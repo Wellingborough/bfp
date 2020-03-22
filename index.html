@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Example</title>
+    <style>
+      a {
+        font-family: Arial;
+        background-color: green;
+        color: white;
+        padding: 15px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Using JavaScript to change the contents of an HTML element</h1>
+    <h1 id="firstHeader">Part 1</h1>
+    <p>Some example text…</p>
+    <h1 id="secondHeader">Part 2</h1>
+    <p>Some more example text…</p>
+    <button onclick="displayResult()">Change text</button>
+    <div/>
+    <a href="https://wellingborough.github.io/jsexample/example2.html">Try using the document.write() method</a>
+    <a href="https://wellingborough.github.io/jsexample/example3.html">Try using the window.alert() method</a>
+    <div/>
+    <a style="background-color: purple;" href="https://wellingborough.github.io/jsexample/example4.html">Single element input</a>
+    <a style="background-color: purple;" href="https://wellingborough.github.io/jsexample/example5.html">Form input</a>
+    <script>
+    function displayResult() {
+      document.getElementById("secondHeader").innerHTML = "New Text";
+    }
+    </script>
+  </body>
+</html>
