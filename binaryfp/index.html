@@ -228,17 +228,19 @@
         var bfp = document.getElementById("BFP").innerHTML;
         var parts = bfp.split(" ");
         var mantissa = parts[0];
+        var exponent = parts[1];
         
         //
         // Convert exponent to denary
         //
-        var exponent = parts[1];
-        var res = convertBinaryToDenary(exponent);
-        // document.getElementById("BFP").innerHTML = res.toString();
-        alert("The exponent is " + res.toString());
+        var exponentDenary = convertBinaryToDenary(exponent);
+        alert("The exponent is " + exponentDenary.toString());
 
-        res = convertFractionalBinaryToDenary(mantissa);
-        alert("The mantissa is " + res.toString());
+        var mantissaDenary = convertFractionalBinaryToDenary(mantissa);
+        alert("The mantissa is " + mantissaDenary.toString());
+        
+        var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
+        alert("The result is " + denaryResult.toString());
       }
     </script>
 
