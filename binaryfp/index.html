@@ -109,9 +109,19 @@
     <script>
       function generateBFP() {
         document.getElementById("BFP").innerHTML = "01101010 0110";
-        mantissaSize = document.getElementById("mantissa-size").value;
-        exponentSize = document.getElementById("exponent-size").value;
-        document.getElementById("BFP").innerHTML = mantissaSize.toString();
+        var mantissaSize = document.getElementById("mantissa-size").value;
+        var exponentSize = document.getElementById("exponent-size").value;
+        var bfp="";
+        var bit = 0;
+        for (i = 0; i < mantissaSize; ++i) {
+          bit = Math.floor(Math.random() * Math.floor(2));
+          bfp += bit.toString();
+        }
+        for (i = 0; i < exponentSize; ++i) {
+          bit = Math.floor(Math.random() * Math.floor(2));
+          bfp += bit.toString();
+        }
+        document.getElementById("BFP").innerHTML = bfp;
       }
     </script>
     
