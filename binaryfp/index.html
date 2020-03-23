@@ -118,18 +118,21 @@
         for (i = 0; i < mantissaSize; ++i) {
           bit = Math.floor(Math.random() * Math.floor(2));
           bfp += bit.toString();
-        }
-        
-        //
-        // Post-process the mantissa to make sure that it is a valid bfp mantissa
-        // It must start "01" for a positive number or
-        //               "10" for a negative number
-        //
-        if ( bfp[0] == "0" ) {
-          bfp[1] = 'I';
-        } else {
-          bfp[1] = 'O';
-        }
+          
+          //
+          // Process the mantissa to make sure that it is a valid bfp mantissa
+          // It must start "01" for a positive number or
+          //               "10" for a negative number
+          //
+          if ( i == 0 ) {
+            if ( bit == 0 ) {
+              bfp += 1.toString();
+            } else {
+              bfp += 0.toString();
+            }
+            i++;
+          }
+        }        
         
         //
         // Put a space between the mantissa and the exponent in the final version
