@@ -130,6 +130,13 @@
     </script>
 
     <script>
+      function convertBinaryToDenary(binaryString) {
+        var result = 6;
+        return result;
+      }
+    </script>
+    
+    <script>
       function checkBFP() {
         //
         // Retrieve the floating point number, then check it against the user-provided answer
@@ -155,6 +162,8 @@
           index = index * 2;
         }
         document.getElementById("BFP").innerHTML = total.toString();
+        var res = convertBinaryToDenary("1101");
+        document.getElementById("BFP").innerHTML = res.toString();
         
       }
     </script>
