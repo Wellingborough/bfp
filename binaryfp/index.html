@@ -71,17 +71,17 @@
         <label for="mantissa-size">Mantissa details</label>
         <div class="input-group fp-1">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon3">Size of mantissa in bits</span>
+            <span class="input-group-text" id="basic-addon1">Size of mantissa in bits</span>
           </div>
-          <input type="number" class="form-control" id="mantissa-size" aria-describedby="basic-addon3">
+          <input type="number" value="4" min="2" max="8" step="1" class="form-control" id="mantissa-size" aria-describedby="basic-addon1">
         </div>
         
-        <label for="basic-url">Your vanity URL</label>
-        <div class="input-group mb-3">
+        <label for="exponent-size">Exponent details</label>
+        <div class="input-group fp-2">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+            <span class="input-group-text" id="basic-addon2">Size of exponent in bits</span>
           </div>
-          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+          <input type="number" value="4" min="2" max="8" step="1" class="form-control" id="exponent-size" aria-describedby="basic-addon2">
         </div>
       
       </div>
