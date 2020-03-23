@@ -109,8 +109,8 @@
     <script>
       function generateBFP() {
         document.getElementById("BFP").innerHTML = "01101010 0110";
-        mantissaSize = document.getElementById("mantissa-size").innerHTML;
-        exponentSize = document.getElementById("exponent-size").innerHTML;
+        mantissaSize = document.getElementById("mantissa-size").value;
+        exponentSize = document.getElementById("exponent-size").value;
         document.getElementById("BFP").innerHTML = mantissaSize.toString();
       }
     </script>
