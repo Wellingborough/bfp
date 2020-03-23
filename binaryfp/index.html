@@ -88,7 +88,7 @@
         </div>
         
         <div class="info-group fp">
-          <span id="BFP" class="d-block p-2 bg-primary display-2 text-white text-center">...</span>
+          <span id="BFP" font-family="Lucida Console" class="d-block p-2 bg-primary display-2 text-white text-center">...</span>
         </div>
 
         <label for="denary-answer">Answer</label>
@@ -108,7 +108,10 @@
     </main><!-- /.container -->
     <script>
       function generateBFP() {
-        document.getElementById("BFP").innerHTML = "01101010 0110";
+        //
+        // Get the size of the mantissa and exponent, and then generate random bits
+        // Put a space between the mantissa and the exponent in the final version
+        //
         var mantissaSize = document.getElementById("mantissa-size").value;
         var exponentSize = document.getElementById("exponent-size").value;
         var bfp="";
@@ -117,6 +120,7 @@
           bit = Math.floor(Math.random() * Math.floor(2));
           bfp += bit.toString();
         }
+        bfp+= " ";
         for (i = 0; i < exponentSize; ++i) {
           bit = Math.floor(Math.random() * Math.floor(2));
           bfp += bit.toString();
