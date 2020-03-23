@@ -110,7 +110,6 @@
       function generateBFP() {
         //
         // Get the size of the mantissa and exponent, and then generate random bits
-        // Put a space between the mantissa and the exponent in the final version
         //
         var mantissaSize = document.getElementById("mantissa-size").value;
         var exponentSize = document.getElementById("exponent-size").value;
@@ -120,6 +119,21 @@
           bit = Math.floor(Math.random() * Math.floor(2));
           bfp += bit.toString();
         }
+        
+        //
+        // Post-process the mantissa to make sure that it is a valid bfp mantissa
+        // It must start "01" for a positive number or
+        //               "10" for a negative number
+        //
+        if ( bfp[0] == '0' ) {
+          bfp[1] = '1';
+        } else {
+          bfp[1] = '0';
+        }
+        
+        //
+        // Put a space between the mantissa and the exponent in the final version
+        //
         bfp+= " ";
         for (i = 0; i < exponentSize; ++i) {
           bit = Math.floor(Math.random() * Math.floor(2));
