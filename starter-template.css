@@ -6,6 +6,14 @@ body {
   text-align: center;
 }
 .input-group {
-  padding: 3rem 1.5rem;
+  padding: 0.5rem 0.5rem;
+  text-align: left;
+}
+.action-group {
+  padding: 1.0rem 0.5rem;
+  text-align: left;
+}
+.info-group {
+  padding: 1.5rem 0.5rem;
   text-align: left;
 }
