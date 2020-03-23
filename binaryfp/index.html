@@ -181,8 +181,10 @@
         //
         var exponent = parts[1];
         var res = convertBinaryToDenary(exponent);
-        document.getElementById("BFP").innerHTML = res.toString();
+        // document.getElementById("BFP").innerHTML = res.toString();
         alert("The exponent is " + res.toString());
+
+        res = convertBinaryToDenary(mantissa);
         alert("The mantissa is " + res.toString());
       }
     </script>
