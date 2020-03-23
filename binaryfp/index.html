@@ -181,6 +181,44 @@
         return total;
       }
     </script>
+
+    <script>
+      function convertFractionalBinaryToDenary(binaryString) {
+        var twosComplement = false;
+        
+        if ( binaryString[0] == '1' ) {
+          twosComplement = true;
+          var flip1 = binaryString.replace(/0/g, 'Q');
+          var flip2 = flip1.replace(/1/g, '0');
+          var flip3 = flip2.replace(/Q/g, '1');
+          binaryString = flip3  
+        }
+        
+        var originalLength = binaryString.length;
+        var total = 0;
+        var index = 1;
+        for (i = 0; i < originalLength; ++i) {
+          var len = binaryString.length;
+          thisbit = binaryString.slice(0, 1);
+          if ( thisbit == "1") {
+            total += index;
+          }
+          binaryString = binaryString.slice(1,len);
+          index = index / 2;
+        }
+        //
+        // We can't handle two's complement this way for fractional binary
+        // but can we add on the smallest fractional part?
+        //
+        if ( twosComplement ) {
+          total = total + 1;
+          total = total * -1;
+        }
+        return total;
+      }
+    </script>
+
+    
     
     <script>
       function checkBFP() {
