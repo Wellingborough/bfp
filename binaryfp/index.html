@@ -207,11 +207,11 @@
           index = index / 2;
         }
         //
-        // We can't handle two's complement this way for fractional binary
-        // but can we add on the smallest fractional part?
+        // We can't handle two's complement the same way (as convertBinaryToDenary)
+        // for fractional binary, but can we add on the smallest fractional part?
         //
         if ( twosComplement ) {
-          total = total + 1;
+          total = total + index;
           total = total * -1;
         }
         return total;
