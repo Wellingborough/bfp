@@ -101,7 +101,7 @@
 
         <div class="btn-group" role="group" aria-label="Button group example">
           <button type="button" onclick="checkBFP()" class="btn btn-primary btn-lg">Check</button>
-          <button type="button" class="btn btn-secondary btn-lg text-right">Show Me!</button>
+          <button type="button" onclick="explainBBFP()" class="btn btn-secondary btn-lg text-right">Show Me!</button>
         </div>
 
       </div>
@@ -219,10 +219,34 @@
       }
     </script>
 
-    
-    
     <script>
       function checkBFP() {
+        //
+        // Retrieve the floating point number, then check it against the user-provided answer
+        //
+        var bfp = document.getElementById("BFP").innerHTML;
+        var parts = bfp.split(" ");
+        var mantissa = parts[0];
+        var exponent = parts[1];
+        
+        //
+        // Convert exponent to denary
+        //
+        var exponentDenary = convertBinaryToDenary(exponent);
+        var mantissaDenary = convertFractionalBinaryToDenary(mantissa);        
+        var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
+        var userAnswer = document.getElementById("denary-answer").value;
+        
+        if ( userAnswer == denaryResult ) {
+           alert("You got that one right!  Well done. ");
+        } else {
+          alert("Sorry, your answer is incorrect.  The value is " + denaryResult.toString());
+        }                                        
+      }
+    </script>
+
+    <script>
+      function explainBFP() {
         //
         // Retrieve the floating point number, then check it against the user-provided answer
         //
@@ -242,14 +266,6 @@
         
         var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
         alert("The result is " + denaryResult.toString());
-        
-        var userAnswer = document.getElementById("denary-answer").value;
-        
-        if ( userAnswer == denaryResult ) {
-           alert("You got that one right!  Well done. ");
-        } else {
-          alert("Sorry, your answer is incorrect.  The value is " + denaryResult.toString());
-        }                                        
       }
     </script>
 
