@@ -243,11 +243,13 @@
         var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
         alert("The result is " + denaryResult.toString());
         
-        var userAnswer = document.getElementById("denary-answer").innerHTML;
-        var userAnswerVal = document.getElementById("denary-answer").value;
-        alert("The user entered " + userAnswer);
-        alert("The value of that is " + userAnswerVal.toString());
-                                                 
+        var userAnswer = document.getElementById("denary-answer").value;
+        
+        if ( userAnswer == denaryResult ) {
+           alert("You got that one right!  Well done. ");
+        } else {
+          alert("Sorry, your answer is incorrect.  The value is " + denaryResult.toString());
+        }                                        
       }
     </script>
 
