@@ -121,10 +121,14 @@
         var mantissaSize = 4 + Math.floor(Math.random() * Math.floor(5));
         var exponentSize = 4 + Math.floor(Math.random() * Math.floor(3));
         var bfp="";
+        var manBits="";
+        var expBits="";
+        
         var bit = 0;
         for (var i = 0; i < mantissaSize; ++i) {
           bit = Math.floor(Math.random() * Math.floor(2));
           bfp += bit.toString();
+          manBits += bit.toString();
           
           //
           // Process the mantissa to make sure that it is a valid bfp mantissa
@@ -140,6 +144,7 @@
               nextBit = 0;
             }
             bfp += nextBit.toString();
+            manBits += nextBit.toString();
             i = i+1;
           }
         }        
@@ -151,10 +156,19 @@
         for (i = 0; i < exponentSize; ++i) {
           bit = Math.floor(Math.random() * Math.floor(2));
           bfp += bit.toString();
+          expBits += bit.toString();
         }
         document.getElementById("mantissa-size").value = mantissaSize;
         document.getElementById("exponent-size").value = exponentSize;
-        document.getElementById("Denary").innerHTML = bfp;
+        
+        expValue = convertBinaryToDenary(expBits);
+        manValue = convertFractionalBinaryToDenary(manBits);
+        
+        denaryValue = manValue * (2 ** expValue);
+        
+        //document.getElementById("Denary").innerHTML = bfp;
+        document.getElementById("Denary").innerHTML = denaryValue.toString();
+        alert(bfp);
       }
     </script>
 
