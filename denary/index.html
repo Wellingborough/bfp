@@ -152,8 +152,8 @@
           bit = Math.floor(Math.random() * Math.floor(2));
           bfp += bit.toString();
         }
-        document.getElementById("mantissa-size").innerHTML = mantissaSize.toString();
-        document.getElementById("exponent-size").innerHTML = exponentSize.toString();
+        document.getElementById("mantissa-size").value = mantissaSize;
+        document.getElementById("exponent-size").value = exponentSize;
         document.getElementById("Denary").innerHTML = bfp;
       }
     </script>
