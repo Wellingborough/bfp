@@ -94,7 +94,7 @@
         <label for="denary-answer">Answer</label>
         <div class="input-group fp-1">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon3">Answer in base 10</span>
+            <span class="input-group-text" id="basic-addon3">Answer in base 2</span>
           </div>
           <input type="number" class="form-control" id="denary-answer" aria-describedby="basic-addon3">
         </div>
@@ -107,12 +107,19 @@
       </div>
     </main><!-- /.container -->
     <script>
-      function generateBFP() {
+      function generateDenary() {
         //
-        // Get the size of the mantissa and exponent, and then generate random bits
+        // This may be counter-intuitive, but we need the Denary numbers to be 'suitable' for simple(ish)
+        // conversion to BFP, so we actually randomise a BFP representation and then convert it to Denary
+        // for use as a question.  We stash the mantissa and exponent values in hidden HTML components for
+        // ease of checking later.
         //
-        var mantissaSize = document.getElementById("mantissa-size").value;
-        var exponentSize = document.getElementById("exponent-size").value;
+        
+        //
+        // Randomise the mantissa size (4..8) and exponent size (4..6)
+        //
+        var mantissaSize = 4 + Math.floor(Math.random() * Math.floor(5));
+        var exponentSize = 4 + Math.floor(Math.random() * Math.floor(3));
         var bfp="";
         var bit = 0;
         for (var i = 0; i < mantissaSize; ++i) {
@@ -145,7 +152,7 @@
           bit = Math.floor(Math.random() * Math.floor(2));
           bfp += bit.toString();
         }
-        document.getElementById("BFP").innerHTML = bfp;
+        document.getElementById("Denary").innerHTML = bfp;
       }
     </script>
 
