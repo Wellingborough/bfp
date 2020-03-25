@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Gamble">
+    <title>Wellingborough School · Computer Science</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="theme-color" content="#563d7c">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://wellingborough.github.io/bfp/starter-template.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="https://wellingborough.github.io/bfp/#">Wellingborough School</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/bfp/binaryfp/index.html">Binary Floating Point</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <main role="main" class="container">
+      <div class="starter-template">
+        
+        <div class="action-group fp">
+          <button type="button" onclick="generateDenary()" class="btn btn-primary btn-lg btn-block">Generate Denary Number</button>
+        </div>
+        <!-- Should style this in CSS with a fixed-width font and larger size -->
+        <div class="info-group fp">
+          <span id="Denary" class="d-block p-2 bg-primary display-2 text-white text-center">...</span>
+        </div>
+
+        <label for="mantissa-size">Binary floating point number details</label>
+        <div class="input-group fp-1">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Size of mantissa in bits</span>
+          </div>
+          <input type="number" value="4" min="2" max="8" step="1" class="form-control" id="mantissa-size" aria-describedby="basic-addon1">
+        </div>
+        
+        <div class="input-group fp-1">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon2">Size of exponent in bits</span>
+          </div>
+          <input type="number" value="4" min="2" max="8" step="1" class="form-control" id="exponent-size" aria-describedby="basic-addon2">
+        </div>
+
+        <label for="denary-answer">Answer</label>
+        <div class="input-group fp-1">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">Answer in base 10</span>
+          </div>
+          <input type="number" class="form-control" id="denary-answer" aria-describedby="basic-addon3">
+        </div>
+
+        <div class="btn-group" role="group" aria-label="Button group example">
+          <button type="button" onclick="checkBFP()" class="btn btn-primary btn-lg">Check</button>
+          <button type="button" onclick="explainBFP()" class="btn btn-secondary btn-lg text-right">Show Me!</button>
+        </div>
+
+      </div>
+    </main><!-- /.container -->
+    <script>
+      function generateBFP() {
+        //
+        // Get the size of the mantissa and exponent, and then generate random bits
+        //
+        var mantissaSize = document.getElementById("mantissa-size").value;
+        var exponentSize = document.getElementById("exponent-size").value;
+        var bfp="";
+        var bit = 0;
+        for (var i = 0; i < mantissaSize; ++i) {
+          bit = Math.floor(Math.random() * Math.floor(2));
+          bfp += bit.toString();
+          
+          //
+          // Process the mantissa to make sure that it is a valid bfp mantissa
+          // It must start "01" for a positive number or
+          //               "10" for a negative number
+          //
+          if ( i == 0 ) {
+            var nextBit = 0;
+            
+            if ( bit == 0 ) {
+              nextBit = 1;
+            } else {
+              nextBit = 0;
+            }
+            bfp += nextBit.toString();
+            i = i+1;
+          }
+        }        
+        
+        //
+        // Put a space between the mantissa and the exponent in the final version
+        //
+        bfp+= " ";
+        for (i = 0; i < exponentSize; ++i) {
+          bit = Math.floor(Math.random() * Math.floor(2));
+          bfp += bit.toString();
+        }
+        document.getElementById("BFP").innerHTML = bfp;
+      }
+    </script>
+
+    <script>
+      function convertBinaryToDenary(binaryString) {
+        var twosComplement = false;
+        
+        if ( binaryString[0] == '1' ) {
+          twosComplement = true;
+          var flip1 = binaryString.replace(/0/g, 'Q');
+          var flip2 = flip1.replace(/1/g, '0');
+          var flip3 = flip2.replace(/Q/g, '1');
+          binaryString = flip3  
+        }
+        
+        var originalLength = binaryString.length;
+        var total = 0;
+        var index = 1;
+        for (i = 0; i < originalLength; ++i) {
+          var len = binaryString.length;
+          thisbit = binaryString.slice(len-1, len);
+          if ( thisbit == "1") {
+            total += index;
+          }
+          binaryString = binaryString.slice(0,len-1);
+          index = index * 2;
+        }
+        
+        if ( twosComplement ) {
+          total = total + 1;
+          total = total * -1;
+        }
+        return total;
+      }
+    </script>
+
+    <script>
+      function convertFractionalBinaryToDenary(binaryString) {
+        var twosComplement = false;
+        
+        if ( binaryString[0] == '1' ) {
+          twosComplement = true;
+          var flip1 = binaryString.replace(/0/g, 'Q');
+          var flip2 = flip1.replace(/1/g, '0');
+          var flip3 = flip2.replace(/Q/g, '1');
+          binaryString = flip3  
+        }
+        
+        var originalLength = binaryString.length;
+        var total = 0;
+        var index = 1;
+        for (i = 0; i < originalLength; ++i) {
+          var len = binaryString.length;
+          thisbit = binaryString.slice(0, 1);
+          if ( thisbit == "1") {
+            total += index;
+          }
+          binaryString = binaryString.slice(1,len);
+          index = index / 2;
+        }
+        //
+        // We need to do the equivalent of adding 1 to the LSB; we can use
+        // index here, which (in the above loop) will have been set to the
+        // value of the LSB/2, so we need to restore it, then add it.
+        //
+        if ( twosComplement ) {
+          total = total + (index*2);
+          total = total * -1;
+        }
+        return total;
+      }
+    </script>
+
+    <script>
+      function checkBFP() {
+        //
+        // Retrieve the floating point number, then check it against the user-provided answer
+        //
+        var bfp = document.getElementById("BFP").innerHTML;
+        var parts = bfp.split(" ");
+        var mantissa = parts[0];
+        var exponent = parts[1];
+        
+        //
+        // Convert exponent to denary
+        //
+        var exponentDenary = convertBinaryToDenary(exponent);
+        var mantissaDenary = convertFractionalBinaryToDenary(mantissa);        
+        var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
+        var userAnswer = document.getElementById("denary-answer").value;
+        
+        if ( userAnswer == denaryResult ) {
+           alert("You got that one right!  Well done. ");
+        } else {
+          alert("Sorry, your answer is incorrect.  The value is " + denaryResult.toString());
+        }                                        
+      }
+    </script>
+
+    <script>
+      function explainBFP() {
+        //
+        // Retrieve the floating point number, then check it against the user-provided answer
+        //
+        var bfp = document.getElementById("BFP").innerHTML;
+        var parts = bfp.split(" ");
+        var mantissa = parts[0];
+        var exponent = parts[1];
+        
+        //
+        // Convert exponent to denary
+        //
+        var exponentDenary = convertBinaryToDenary(exponent);
+        alert("The exponent is " + exponentDenary.toString());
+
+        var mantissaDenary = convertFractionalBinaryToDenary(mantissa);
+        alert("The mantissa is " + mantissaDenary.toString());
+        
+        var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
+        alert("The result is " + denaryResult.toString());
+      }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
