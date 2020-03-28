@@ -41,10 +41,10 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/bfp/denary/index.html">Denary-to-BinaryFP <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/bfp/binaryfp/index.html">Binary Floating Point</a>
+            <a class="nav-link" href="/bfp/binaryfp/index.html">BinaryFP-to-Denary</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -96,12 +96,14 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon3">Answer in base 2</span>
           </div>
-          <input type="number" class="form-control" id="denary-answer" aria-describedby="basic-addon3">
+          <input type="number" class="form-control" id="binary-answer" aria-describedby="basic-addon3">
         </div>
 
         <div class="btn-group" role="group" aria-label="Button group example">
-          <button type="button" onclick="checkBFP()" class="btn btn-primary btn-lg">Check</button>
-          <button type="button" onclick="explainBFP()" class="btn btn-secondary btn-lg text-right">Show Me!</button>
+          <button type="button" onclick="checkBinary()" class="btn btn-primary btn-lg">Check</button>
+          <button type="button" onclick="explainBinary()" class="btn btn-secondary btn-lg text-right">Show Me!</button>
+          <input type="hidden" id="hidden-mantissa">
+          <input type="hidden" id="hidden-exponent">
         </div>
 
       </div>
@@ -166,8 +168,17 @@
         
         denaryValue = manValue * (2 ** expValue);
         
-        //document.getElementById("Denary").innerHTML = bfp;
+        //
+        // Display the denary value to be converted
+        //
         document.getElementById("Denary").innerHTML = denaryValue.toString();
+        
+        //
+        // Stash the mantissa and exponent values
+        //
+        document.getElementById("hidden-mantissa").innerHTML = manBits;
+        document.getElementById("hidden-exponent").innerHTML = expBits;
+        
         alert(bfp);
       }
     </script>
@@ -243,28 +254,17 @@
     </script>
 
     <script>
-      function checkBFP() {
+      function checkBinary() {
         //
         // Retrieve the floating point number, then check it against the user-provided answer
         //
-        var bfp = document.getElementById("BFP").innerHTML;
-        var parts = bfp.split(" ");
-        var mantissa = parts[0];
-        var exponent = parts[1];
-        
-        //
-        // Convert exponent to denary
-        //
-        var exponentDenary = convertBinaryToDenary(exponent);
-        var mantissaDenary = convertFractionalBinaryToDenary(mantissa);        
-        var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
-        var userAnswer = document.getElementById("denary-answer").value;
-        
-        if ( userAnswer == denaryResult ) {
-           alert("You got that one right!  Well done. ");
-        } else {
-          alert("Sorry, your answer is incorrect.  The value is " + denaryResult.toString());
-        }                                        
+        var manBits = document.getElementById("hidden-mantissa").innerHTML;
+        var expBits = document.getElementById("hidden-exponent").innerHTML;
+
+        var bfp = document.getElementById("binary-answer").innerHTML;
+        alert("Stored mantissa is " + manBits);        
+        alert("Stored exponent is " + expBits);        
+        alert("User answer is " + bfp);        
       }
     </script>
 
