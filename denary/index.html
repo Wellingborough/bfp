@@ -176,8 +176,8 @@
         //
         // Stash the mantissa and exponent values
         //
-        document.getElementById("hidden-mantissa").value = manBits;
-        document.getElementById("hidden-exponent").value = expBits;
+        document.getElementById("hidden-mantissa").innerHTML = manBits;
+        document.getElementById("hidden-exponent").innerHTML = expBits;
         
         alert(bfp);
       }
@@ -258,10 +258,10 @@
         //
         // Retrieve the floating point number, then check it against the user-provided answer
         //
-        var manBits = document.getElementById("hidden-mantissa").innerHTML;
-        var expBits = document.getElementById("hidden-exponent").innerHTML;
+        var manBits = document.getElementById("hidden-mantissa").value;
+        var expBits = document.getElementById("hidden-exponent").value;
 
-        var bfp = document.getElementById("binary-answer").innerHTML;
+        var bfp = document.getElementById("binary-answer").value;
         alert("Stored mantissa is " + manBits);        
         alert("Stored exponent is " + expBits);        
         alert("User answer is " + bfp);        
