@@ -262,9 +262,18 @@
         var expBits = document.getElementById("hidden-exponent").value;
 
         var bfp = document.getElementById("binary-answer").value;
-        alert("Stored mantissa is " + manBits);        
-        alert("Stored exponent is " + expBits);        
-        alert("User answer is " + bfp);        
+        //alert("Stored mantissa is " + manBits);        
+        //alert("Stored exponent is " + expBits);        
+        //alert("User answer is " + bfp);
+        
+        var bfpAsText = bfp.toString();
+        var answerAsText = manBits.toString() + expBits.toSting();
+        
+        if ( answerAsText == bfpAsText ) {
+          alert("Well done - that is correct!");
+        } else {
+          alert("Unfortunately that is incorrect");
+        }
       }
     </script>
 
