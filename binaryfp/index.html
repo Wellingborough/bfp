@@ -121,10 +121,13 @@
             </div>
             <div class="modal-body">
               This is how to do it...
+              <p id="Explain1" hidden> Here is the first step.</p>
+              <p id="Explain2" hidden> And then the next step.</p>
+              <p id="Explain3" hidden> Then the last step.</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Show next step</button>
+              <button type="button" class="btn btn-primary" onclick="explainBFP()">Show next step</button>
             </div>
           </div>
         </div>
@@ -281,17 +284,18 @@
         var mantissa = parts[0];
         var exponent = parts[1];
         
+        document.getElementById("Explain1").removeAttribute("hidden");
         //
         // Convert exponent to denary
         //
         var exponentDenary = convertBinaryToDenary(exponent);
-        alert("The exponent is " + exponentDenary.toString());
+        //alert("The exponent is " + exponentDenary.toString());
 
         var mantissaDenary = convertFractionalBinaryToDenary(mantissa);
-        alert("The mantissa is " + mantissaDenary.toString());
+        //alert("The mantissa is " + mantissaDenary.toString());
         
         var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
-        alert("The result is " + denaryResult.toString());
+        //alert("The result is " + denaryResult.toString());
       }
     </script>
 
