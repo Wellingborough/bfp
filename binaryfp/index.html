@@ -121,25 +121,29 @@
             </div>
             <div class="modal-body">
               <table style="width:100%">
-                <tr id="exp-step-1">
+                <tr id="exp-step-1-title">
                   <td>Step 1</td>
-                  <td id="exp-step-1-detail" style="display: none;">Convert the exponent to denary:</td>
+                  <td id="exp-step-1-title-content" style="display: none;">Convert the exponent to denary:</td>
                 </tr>
-                <tr id="exp-step-1-summary" style="display: none;">
+                <tr id="exp-step-1-summary">
                   <td></td>
-                  <td>Binary: 0101   Denary: 5</td>
+                  <td id="exp-step-1-summary-content" style="display: none;">Binary: 0101   Denary: 5</td>
                 </tr>
-                <tr id="exp-step-2">
+                <tr id="exp-step-2-title">
                   <td>Step 2 </td>
-                  <td id="exp-step-2-detail" style="display: none;">Shift the mantissa 5 places to the left:</td>
+                  <td id="exp-step-2-title-content" style="display: none;">Shift the mantissa 5 places to the left:</td>
                 </tr>
-                <tr id="exp-step-2-summary" style="display: none;">
+                <tr id="exp-step-2-summary">
                   <td></td>
-                  <td>Mantissa: 0.1101   Shifted: 11010.0</td>
+                  <td id="exp-step-2-summary-content" style="display: none;">Mantissa: 0.1101   Shifted: 11010.0</td>
                 </tr>
-                <tr id="exp-step-3">
+                <tr id="exp-step-3-title">
                   <td>Step 3</td>
-                  <td id="exp-step-3-detail" style="display: none;">Shift the mantissa left/right n places:</td>
+                  <td id="exp-step-3-title-content" style="display: none;">Convert the mantissa to denary:</td>
+                </tr>
+                <tr id="exp-step-3-summary">
+                  <td></td>
+                  <td id="exp-step-3-summary-content" style="display: none;">Binary: -110.01   Denary: -6.25</td>
                 </tr>
                 <tr id="exp-step-4" style="display: none;">
                   <td>Step 4</td>
@@ -305,14 +309,30 @@
         var parts = bfp.split(" ");
         var mantissa = parts[0];
         var exponent = parts[1];
+        var stage = 0;
         
-        //document.getElementById("Explain1").removeAttribute("hidden");
-        var result_style = document.getElementById('exp-step-1-detail').style;
-        result_style.display = 'table-row';
-        result_style = document.getElementById('exp-step-1-summary').style;
-        result_style.display = 'table-row';
-        var result_style2 = document.getElementById('exp-step-2-detail').style;
-        result_style2.display = 'table-row';
+        //
+        // We just progressively show the answer here - the text is set up in another
+        // bit of JS, called when the "Show Me!" button is clicked
+        //
+        var rs1 = document.getElementById('exp-step-1-title-content').style;
+        var rs2 = document.getElementById('exp-step-1-title-content').style;
+        var rs3 = document.getElementById('exp-step-1-title-content').style;
+        
+        if (rs1 == 'hidden') {
+          rs1.display = 'table-row';
+          rs1 = document.getElementById('exp-step-1-summary-content').style;
+          rs1.display = 'table-row';
+        } else if (rs2 == 'hidden') {
+          rs2.display = 'table-row';
+          rs2 = document.getElementById('exp-step-2-summary-content').style;
+          rs2.display = 'table-row';
+        } else if (rs3 == 'hidden') {
+          rs3.display = 'table-row';
+          rs3 = document.getElementById('exp-step-3-summary-content').style;
+          rs3.display = 'table-row';
+        }
+
         //
         // Convert exponent to denary
         //
@@ -329,15 +349,25 @@
     
     <script>
       function clearExplanation() {
-        var result_style = document.getElementById('exp-step-1-detail').style;
+        
+        var result_style = document.getElementById('exp-step-1-title-content').style;
         result_style.display = 'none';
         
-        result_style = document.getElementById('exp-step-1-summary').style;
+        result_style = document.getElementById('exp-step-1-summary-content').style;
         result_style.display = 'none';
         
-        result_style = document.getElementById('exp-step-2-detail').style;
+        result_style = document.getElementById('exp-step-2-title-content').style;
         result_style.display = 'none';
-      }
+        
+        result_style = document.getElementById('exp-step-2-summary-content').style;
+        result_style.display = 'none';
+
+        result_style = document.getElementById('exp-step-2-title-content').style;
+        result_style.display = 'none';
+        
+        result_style = document.getElementById('exp-step-2-summary-content').style;
+        result_style.display = 'none';
+}
     </script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
