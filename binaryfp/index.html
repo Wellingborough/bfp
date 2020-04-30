@@ -319,7 +319,8 @@
         var exponentDenary = convertBinaryToDenary(exponent);
         var strStep1 = "Binary: " + exponent.toString() + "      Denary: " + exponentDenary.toString();
         
-        var strStep2Summary = "Shift the mantissa " + exponentDenary.toString() + " places to the ";
+        var absExponent = Math.abs(exponentDenary);
+        var strStep2Summary = "Shift the mantissa " + absExponent.toString() + " places to the ";
         
         if (exponentDenary < 0) {
           strStep2Summary = strStep2Summary + "right:";
