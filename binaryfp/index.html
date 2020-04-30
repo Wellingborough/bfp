@@ -121,20 +121,25 @@
             </div>
             <div class="modal-body">
               <table style="width:100%">
-                <tr>
-                  <th>Firstname</th>
-                  <th>Lastname</th>
-                  <th>Age</th>
+                <tr id="exp-step-1">
+                  <td>Step 1</td>
+                  <td id="exp-step-1-detail" style="display: none;">Convert the exponent to denary:</td>
                 </tr>
-                <tr>
-                  <td>Jill</td>
-                  <td>Smith</td>
-                  <td>50</td>
+                <tr id="exp-step-1-summary">
+                  <td></td>
+                  <td style="display: none;">We now know how many places we need to shift the mantissa</td>
                 </tr>
-                <tr>
-                  <td>Eve</td>
-                  <td>Jackson</td>
-                  <td>94</td>
+                <tr id="exp-step-2">
+                  <td>Step 2 </td>
+                  <td id="exp-step-2-detail" style="display: none;">Convert the mantissa to denary and add the radix point:</td>
+                </tr>
+                <tr id="exp-step-3">
+                  <td>Step 3</td>
+                  <td id="exp-step-3-detail" style="display: none;">Shift the mantissa left/right n places:</td>
+                </tr>
+                <tr id="exp-step-4" style="display: none;">
+                  <td>Step 4</td>
+                  <td>This should not be shown</td>
                 </tr>
               </table>
             </div>
@@ -297,7 +302,11 @@
         var mantissa = parts[0];
         var exponent = parts[1];
         
-        document.getElementById("Explain1").removeAttribute("hidden");
+        //document.getElementById("Explain1").removeAttribute("hidden");
+        var result_style = document.getElementById('exp-step-1-detail').style;
+        result_style.display = 'table-row';
+        var result_style2 = document.getElementById('exp-step-2-detail').style;
+        result_style2.display = 'visible';
         //
         // Convert exponent to denary
         //
