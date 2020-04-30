@@ -319,6 +319,17 @@
         var exponentDenary = convertBinaryToDenary(exponent);
         var strStep1 = "Binary: " + exponent.toString() + "      Denary: " + exponentDenary.toString();
         
+        var strStep2Summary = "Shift the mantissa " + exponentDenary.toString + " places to the ";
+        
+        if (exponentDenary < 0) {
+          strStep2Summary = strStep2Summary + "right:";
+        } else if (exponentDenary == 0 ){
+          strStep2Summary = "Do not shift the mantiisa as the exponent is 0:"
+        }
+        else {
+          strStep2Summary = strStep2Summary + "right:";
+        }
+        
         var mantissaDenary = convertFractionalBinaryToDenary(mantissa);
         var strStep2 = "Mantissa: " + mantissa.toString() + "      Shifted: " + mantissa.toString();
         
@@ -329,6 +340,7 @@
         // Set up the explanation text
         //
         document.getElementById('exp-step-1-summary-content').innerHTML = strStep1;
+        document.getElementById('exp-step-2-title-content').innerHTML = strStep2Summary;
         document.getElementById('exp-step-2-summary-content').innerHTML = strStep2;
         document.getElementById('exp-step-3-summary-content').innerHTML = strStep3;
 
