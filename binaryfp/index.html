@@ -127,11 +127,15 @@
                 </tr>
                 <tr id="exp-step-1-summary" style="display: none;">
                   <td></td>
-                  <td>We now know how many places we need to shift the mantissa</td>
+                  <td>Binary: 0101   Denary: 5</td>
                 </tr>
                 <tr id="exp-step-2">
                   <td>Step 2 </td>
-                  <td id="exp-step-2-detail" style="display: none;">Convert the mantissa to denary and add the radix point:</td>
+                  <td id="exp-step-2-detail" style="display: none;">Shift the mantissa 5 places to the left:</td>
+                </tr>
+                <tr id="exp-step-2-summary" style="display: none;">
+                  <td></td>
+                  <td>Mantissa: 0.1101   Shifted: 11010.0</td>
                 </tr>
                 <tr id="exp-step-3">
                   <td>Step 3</td>
@@ -144,7 +148,7 @@
               </table>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" onclick="clearExplanation()" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary" onclick="explainBFP()">Show next step</button>
             </div>
           </div>
@@ -320,6 +324,12 @@
         
         var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
         //alert("The result is " + denaryResult.toString());
+      }
+    </script>
+    
+    <script>
+      function clearExplanation() {
+        alert("Would reset the hidden attributes");
       }
     </script>
 
