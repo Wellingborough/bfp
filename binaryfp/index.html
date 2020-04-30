@@ -317,13 +317,13 @@
         // Convert exponent to denary
         //
         var exponentDenary = convertBinaryToDenary(exponent);
-        var strStep1 = "Binary: " + exponent.toString() + "      Denary: " + exponentDenary.toString());
+        var strStep1 = "Binary: " + exponent.toString() + "      Denary: " + exponentDenary.toString();
         
         var mantissaDenary = convertFractionalBinaryToDenary(mantissa);
-        var strStep2 = "Mantissa: " + mantissa.toString() + "      Shifted: " + mantissa.toString());
+        var strStep2 = "Mantissa: " + mantissa.toString() + "      Shifted: " + mantissa.toString();
         
         var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
-        var strStep3 = "Binary: " + mantissa.toString() + "      Denary: " + denaryResult.toString());
+        var strStep3 = "Binary: " + mantissa.toString() + "      Denary: " + denaryResult.toString();
 
         //
         // Set up the explanation text
