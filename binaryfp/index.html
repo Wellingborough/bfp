@@ -162,6 +162,43 @@
       
     </main><!-- /.container -->
     <script>
+      function createExplanation() {
+        //
+        // Retrieve the floating point number, then format the explanation steps
+        //
+        alert("In createExplanation()")
+        var bfp = document.getElementById("BFP").innerHTML;
+        var parts = bfp.split(" ");
+        var mantissa = parts[0];
+        var exponent = parts[1];
+        
+        //
+        // Convert exponent to denary
+        //
+        var exponentDenary = convertBinaryToDenary(exponent);
+        var strStep1 = "Binary: " + exponent.toString() + "      Denary: " + exponentDenary.toString());
+        //alert(strStep1)
+        
+        var mantissaDenary = convertFractionalBinaryToDenary(mantissa);
+        var strStep2 = "Mantissa: " + mantissa.toString() + "      Shifted: " + mantissa.toString());
+        //alert("The mantissa is " + mantissaDenary.toString());
+        
+        var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
+        var strStep3 = "Binary: " + mantissa.toString() + "      Denary: " + denaryResult.toString());
+        //alert("The result is " + denaryResult.toString());
+
+        //
+        // We just progressively show the answer here - the text is set up in another
+        // bit of JS, called when the "Show Me!" button is clicked
+        //
+        document.getElementById('exp-step-1-summary-content').innerHTML = strStep1;
+        document.getElementById('exp-step-2-summary-content').innerHTML = strStep2;
+        document.getElementById('exp-step-3-summary-content').innerHTML = strStep3;
+        //alert(rs1.display);        
+      }
+    </script>
+
+    <script>
       function generateBFP() {
         //
         // Get the size of the mantissa and exponent, and then generate random bits
@@ -202,6 +239,7 @@
         }
         document.getElementById("BFP").innerHTML = bfp;
       }
+      createExplanation();
     </script>
 
     <script>
@@ -300,42 +338,6 @@
       }
     </script>
 
-    <script>
-      function createExplanation() {
-        //
-        // Retrieve the floating point number, then format the explanation steps
-        //
-        alert("In createExplanation()")
-        var bfp = document.getElementById("BFP").innerHTML;
-        var parts = bfp.split(" ");
-        var mantissa = parts[0];
-        var exponent = parts[1];
-        
-        //
-        // Convert exponent to denary
-        //
-        var exponentDenary = convertBinaryToDenary(exponent);
-        var strStep1 = "Binary: " + exponent.toString() + "      Denary: " + exponentDenary.toString());
-        //alert(strStep1)
-        
-        var mantissaDenary = convertFractionalBinaryToDenary(mantissa);
-        var strStep2 = "Mantissa: " + mantissa.toString() + "      Shifted: " + mantissa.toString());
-        //alert("The mantissa is " + mantissaDenary.toString());
-        
-        var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
-        var strStep3 = "Binary: " + mantissa.toString() + "      Denary: " + denaryResult.toString());
-        //alert("The result is " + denaryResult.toString());
-
-        //
-        // We just progressively show the answer here - the text is set up in another
-        // bit of JS, called when the "Show Me!" button is clicked
-        //
-        document.getElementById('exp-step-1-summary-content').innerHTML = strStep1;
-        document.getElementById('exp-step-2-summary-content').innerHTML = strStep2;
-        document.getElementById('exp-step-3-summary-content').innerHTML = strStep3;
-        //alert(rs1.display);        
-      }
-    </script>
 
     <script>
       function explainBFP() {
