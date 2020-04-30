@@ -318,17 +318,17 @@
         var rs1 = document.getElementById('exp-step-1-title-content').style;
         var rs2 = document.getElementById('exp-step-2-title-content').style;
         var rs3 = document.getElementById('exp-step-3-title-content').style;
-        alert(rs1);
+        //alert(rs1.display);
         
-        if (rs1 == 'hidden') {
+        if (rs1.display == 'hidden') {
           rs1.display = 'table-row';
           rs1 = document.getElementById('exp-step-1-summary-content').style;
           rs1.display = 'table-row';
-        } else if (rs2 == 'hidden') {
+        } else if (rs2.display == 'hidden') {
           rs2.display = 'table-row';
           rs2 = document.getElementById('exp-step-2-summary-content').style;
           rs2.display = 'table-row';
-        } else if (rs3 == 'hidden') {
+        } else if (rs3.display == 'hidden') {
           rs3.display = 'table-row';
           rs3 = document.getElementById('exp-step-3-summary-content').style;
           rs3.display = 'table-row';
