@@ -101,7 +101,7 @@
 
         <div class="btn-group" role="group" aria-label="Button group example">
           <button type="button" onclick="checkBFP()" class="btn btn-primary btn-lg">Check</button>
-          <button type="button" class="btn btn-secondary btn-lg text-right" data-toggle="modal" data-target="#explanationModal">
+          <button type="button" onclick="createExplanation()" class="btn btn-secondary btn-lg text-right" data-toggle="modal" data-target="#explanationModal">
             Show Me!
           </button>
         </div>
@@ -301,16 +301,43 @@
     </script>
 
     <script>
-      function explainBFP() {
+      function createExplanation() {
         //
-        // Retrieve the floating point number, then check it against the user-provided answer
+        // Retrieve the floating point number, then format the explanation steps
         //
         var bfp = document.getElementById("BFP").innerHTML;
         var parts = bfp.split(" ");
         var mantissa = parts[0];
         var exponent = parts[1];
-        var stage = 0;
         
+        //
+        // Convert exponent to denary
+        //
+        var exponentDenary = convertBinaryToDenary(exponent);
+        var strStep1 = "Binary: " + exponent.toString() + "      Denary: " + exponentDenary.toString());
+        //alert(strStep1)
+        
+        var mantissaDenary = convertFractionalBinaryToDenary(mantissa);
+        var strStep2 = "Mantissa: " + mantissa.toString() + "      Shifted: " + mantissa.toString());
+        //alert("The mantissa is " + mantissaDenary.toString());
+        
+        var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
+        var strStep3 = "Binary: " + mantissa.toString() + "      Denary: " + denaryResult.toString());
+        //alert("The result is " + denaryResult.toString());
+
+        //
+        // We just progressively show the answer here - the text is set up in another
+        // bit of JS, called when the "Show Me!" button is clicked
+        //
+        document.getElementById('exp-step-1-summary-content').innerHTML = strStep1;
+        document.getElementById('exp-step-2-summary-content').innerHTML = strStep2;
+        document.getElementById('exp-step-3-summary-content').innerHTML = strStep3;
+        //alert(rs1.display);        
+      }
+    </script>
+
+    <script>
+      function explainBFP() {
         //
         // We just progressively show the answer here - the text is set up in another
         // bit of JS, called when the "Show Me!" button is clicked
@@ -333,18 +360,6 @@
           rs3 = document.getElementById('exp-step-3-summary-content').style;
           rs3.display = 'table-row';
         }
-
-        //
-        // Convert exponent to denary
-        //
-        var exponentDenary = convertBinaryToDenary(exponent);
-        //alert("The exponent is " + exponentDenary.toString());
-
-        var mantissaDenary = convertFractionalBinaryToDenary(mantissa);
-        //alert("The mantissa is " + mantissaDenary.toString());
-        
-        var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
-        //alert("The result is " + denaryResult.toString());
       }
     </script>
     
