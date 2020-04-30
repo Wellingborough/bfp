@@ -125,9 +125,9 @@
                   <td>Step 1</td>
                   <td id="exp-step-1-detail" style="display: none;">Convert the exponent to denary:</td>
                 </tr>
-                <tr id="exp-step-1-summary">
+                <tr id="exp-step-1-summary" style="display: none;">
                   <td></td>
-                  <td style="display: none;">We now know how many places we need to shift the mantissa</td>
+                  <td>We now know how many places we need to shift the mantissa</td>
                 </tr>
                 <tr id="exp-step-2">
                   <td>Step 2 </td>
@@ -305,8 +305,10 @@
         //document.getElementById("Explain1").removeAttribute("hidden");
         var result_style = document.getElementById('exp-step-1-detail').style;
         result_style.display = 'table-row';
+        result_style = document.getElementById('exp-step-1-summary').style;
+        result_style.display = 'table-row';
         var result_style2 = document.getElementById('exp-step-2-detail').style;
-        result_style2.display = 'visible';
+        result_style2.display = 'table-row';
         //
         // Convert exponent to denary
         //
