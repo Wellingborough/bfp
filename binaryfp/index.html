@@ -329,7 +329,14 @@
     
     <script>
       function clearExplanation() {
-        alert("Would reset the hidden attributes");
+        var result_style = document.getElementById('exp-step-1-detail').style;
+        result_style.display = 'none';
+        
+        result_style = document.getElementById('exp-step-1-summary').style;
+        result_style.display = 'none';
+        
+        result_style = document.getElementById('exp-step-2-detail').style;
+        result_style.display = 'none';
       }
     </script>
 
