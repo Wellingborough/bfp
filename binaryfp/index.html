@@ -370,6 +370,10 @@
           rs2.display = 'table-row';
           rs2 = document.getElementById('exp-step-2-summary-content').style;
           rs2.display = 'table-row';
+          if (mantissaDenary < 0) {
+            rs2 = document.getElementById('exp-step-2-summary-2sc-content').style;
+            rs2.display = 'table-row';
+          }
         } else if (rs3.display == 'none') {
           rs3.display = 'table-row';
           rs3 = document.getElementById('exp-step-3-summary-content').style;
@@ -391,6 +395,8 @@
         result_style.display = 'none';
         
         result_style = document.getElementById('exp-step-2-summary-content').style;
+        result_style.display = 'none';
+        result_style = document.getElementById('exp-step-2-summary-2sc-content').style;
         result_style.display = 'none';
 
         result_style = document.getElementById('exp-step-3-title-content').style;
