@@ -133,7 +133,7 @@
                   <td>2. </td>
                   <td id="exp-step-2-title-content" style="display: none;">Shift the mantissa 5 places to the left:</td>
                 </tr>
-                <tr id="exp-step-2-summary-2sc">
+                <tr id="exp-step-2-summary-2sc" style="display: none;">
                   <td>&nbsp;</td>
                   <td id="exp-step-2-summary-2sc-content" style="display: none;">Mantissa: 1.1101   Converted: -0.0011</td>
                 </tr>
@@ -373,6 +373,8 @@
           if (mantissaDenary < 0) {
             rs2 = document.getElementById('exp-step-2-summary-2sc-content').style;
             rs2.display = 'table-row';
+            rs2 = document.getElementById('exp-step-2-summary-2sc').style;
+            rs2.display = 'table-row';
           }
         } else if (rs3.display == 'none') {
           rs3.display = 'table-row';
@@ -397,6 +399,8 @@
         result_style = document.getElementById('exp-step-2-summary-content').style;
         result_style.display = 'none';
         result_style = document.getElementById('exp-step-2-summary-2sc-content').style;
+        result_style.display = 'none';
+        result_style = document.getElementById('exp-step-2-summary-2sc').style;
         result_style.display = 'none';
 
         result_style = document.getElementById('exp-step-3-title-content').style;
