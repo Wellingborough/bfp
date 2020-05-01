@@ -209,6 +209,24 @@
     </script>
 
     <script>
+      function convertUnsignedDenaryToBinary(denaryValue) {
+        var binaryString = "";
+        while (denaryValue > 1) {
+          var z = denaryValue % 2;
+          binaryString = z.toString() + binaryString ;
+          denaryValue = Math.floor(denaryValue/2);
+        }
+
+        if (denaryValue == 0) {
+          binaryString = '0' + binaryString;
+        } else {
+          binaryString = '1' + binaryString;
+        }
+        return binaryString;
+      }
+    </script>
+    
+    <script>
       function convertBinaryToDenary(binaryString) {
         var twosComplement = false;
         
@@ -346,34 +364,42 @@
         // positive, we shift the number left, so the 'new' radix position will be off to the right.
         // In either case, we may need to pad with zeroes...
         var newpos = 1 + exponentDenary;
-        var newMantissa = mantissa;
+        var shiftedMantissa = mantissa;
         var length = mantissa.length;
+        
+        //
+        // We need to display the mantissa as a binary string, complete with radix point and sign
+        var mantissaBinary = convertUnsignedDenaryToBinary(Math.abs(mantissaDenary));
+        var mantissaBinaryDisplay = mantissaBinary.slice(0,1) + "." + mantissaBinary.slice(1);
+        if (mantissaDenary < 0){
+          mantissaBinaryDisplay = "-" + mantissaBinaryDisplay;
+        }
         
         if (newpos < 0) {
           var c = Math.abs(newpos);
           var zeroesString = '0';
-          newMantissa = "0." + zeroesString.repeat(c-1);
+          shiftedMantissa = "0." + zeroesString.repeat(c-1);
         }
         else if (newpos == 0) {
-          newMantissa = "0." + mantissa;
+          shiftedMantissa = "0." + mantissa;
         }
         else if ( newpos < length-1) {
-          newMantissa =  mantissa.slice(0, newpos) + "." + mantissa.slice(newpos);
+          shiftedMantissa =  mantissa.slice(0, newpos) + "." + mantissa.slice(newpos);
         }
         else {
           var c = newpos + 1 - length;
           var zeroesString = '0';
-          newMantissa = mantissa + zeroesString.repeat(c-1) + ".0";
+          shiftedMantissa = mantissa + zeroesString.repeat(c-1) + ".0";
         }
                  
-        var strStep2 = "Mantissa: " + mantissa + "      Shifted: " + newMantissa;
+        var strStep2 = "Mantissa: " + mantissaBinaryDisplay + "      Shifted: " + shiftedMantissa;
   
           
         //
         //  Show the denary result
         //
         var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
-        var strStep3 = "Binary: " + mantissa + "      Denary: " + denaryResult.toString();
+        var strStep3 = "Binary: " + mantissaBinaryDisplay + "      Denary: " + denaryResult.toString();
 
         //
         // Set up the explanation text
