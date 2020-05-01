@@ -346,19 +346,22 @@
         // In either case, we may need to pad with zeroes...
         var newpos = 1 + exponentDenary;
         var newMantissa = mantissa;
+        var length = mantissa.length;
+        
         if (newpos < 0) {
           var c = Math.abs(newpos);
+          var zeroesString = '0';
+          newMantissa = "0." + zeroesStrong.repeat(c);
         }
         else if (newpos == 0) {
           newMantissa = "0." + mantissa;
         }
-        else if ( newpos < x) {
-          ;
+        else if ( newpos < length-1) {
+          newMantissa =  mantiss.slice(0, newpos) + "." + mantissa.slice(newpos);
         else {
           var c = newpos + 1 - strlen(mantissa);
-          var zeroes_string = '0';
-          console.log(totn_string.repeat(0));
-          newMantissa = mantissa + ;
+          var zeroesString = '0';
+          newMantissa = mantissa + zeroesString.repeat(c) + ".0";
         }
                  
         var strStep2 = "Mantissa: " + mantissa + "      Shifted: " + newMantissa;
