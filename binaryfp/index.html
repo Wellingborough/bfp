@@ -133,6 +133,10 @@
                   <td>2. </td>
                   <td id="exp-step-2-title-content" style="display: none;">Shift the mantissa 5 places to the left:</td>
                 </tr>
+                <tr id="exp-step-2-summary-2sc">
+                  <td>&nbsp;</td>
+                  <td id="exp-step-2-summary-2sc-content" style="display: none;">Mantissa: 1.1101   Converted: -0.0011</td>
+                </tr>
                 <tr id="exp-step-2-summary">
                   <td>&nbsp;</td>
                   <td id="exp-step-2-summary-content" style="display: none;">Mantissa: 0.1101   Shifted: 11010.0</td>
@@ -202,7 +206,6 @@
         }
         document.getElementById("BFP").innerHTML = bfp;
       }
-      createExplanation();
     </script>
 
     <script>
@@ -333,6 +336,8 @@
         
         var mantissaDenary = convertFractionalBinaryToDenary(mantissa);
         var strStep2 = "Mantissa: " + mantissa.toString() + "      Shifted: " + mantissa.toString();
+
+        var strStep2a = "Mantissa: " + mantissa.toString() + "\t Converted: -0.1101"
         
         var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
         var strStep3 = "Binary: " + mantissa.toString() + "      Denary: " + denaryResult.toString();
@@ -342,6 +347,9 @@
         //
         document.getElementById('exp-step-1-summary-content').innerHTML = strStep1;
         document.getElementById('exp-step-2-title-content').innerHTML = strStep2Summary;
+        if (mantissaDenary < 0) {
+          document.getElementById('exp-step-2-summary-2sc-content').innerHTML = strStep2a;
+        }
         document.getElementById('exp-step-2-summary-content').innerHTML = strStep2;
         document.getElementById('exp-step-3-summary-content').innerHTML = strStep3;
 
