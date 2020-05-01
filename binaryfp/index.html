@@ -369,8 +369,8 @@
         
         //
         // We need to display the mantissa as a binary string, complete with radix point and sign
-        var mantissaBinary = convertUnsignedDenaryToBinary(Math.abs(mantissaDenary));
-        var mantissaBinaryDisplay = mantissaBinary.slice(0,1) + "." + mantissaBinary.slice(1);
+        //var mantissaBinary = convertUnsignedDenaryToBinary(Math.abs(mantissaDenary));
+        var mantissaBinaryDisplay = mantissa.slice(0,1) + "." + mantissa.slice(1);
         if (mantissaDenary < 0){
           mantissaBinaryDisplay = "-" + mantissaBinaryDisplay;
         }
