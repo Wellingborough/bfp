@@ -347,21 +347,27 @@
         var newpos = 1 + exponentDenary;
         var newMantissa = mantissa;
         var length = mantissa.length;
+        alert("here1");
         
         if (newpos < 0) {
           var c = Math.abs(newpos);
           var zeroesString = '0';
           newMantissa = "0." + zeroesString.repeat(c);
+          alert("here2");
         }
         else if (newpos == 0) {
           newMantissa = "0." + mantissa;
+          alert("here3");
         }
         else if ( newpos < length-1) {
           newMantissa =  mantissa.slice(0, newpos) + "." + mantissa.slice(newpos);
+          alert("here4");
+        }
         else {
           var c = newpos + 1 - length;
           var zeroesString = '0';
           newMantissa = mantissa + zeroesString.repeat(c) + ".0";
+          alert("here5");
         }
                  
         var strStep2 = "Mantissa: " + mantissa + "      Shifted: " + newMantissa;
