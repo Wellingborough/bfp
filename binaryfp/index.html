@@ -351,15 +351,15 @@
         if (newpos < 0) {
           var c = Math.abs(newpos);
           var zeroesString = '0';
-          newMantissa = "0." + zeroesStrong.repeat(c);
+          newMantissa = "0." + zeroesString.repeat(c);
         }
         else if (newpos == 0) {
           newMantissa = "0." + mantissa;
         }
         else if ( newpos < length-1) {
-          newMantissa =  mantiss.slice(0, newpos) + "." + mantissa.slice(newpos);
+          newMantissa =  mantissa.slice(0, newpos) + "." + mantissa.slice(newpos);
         else {
-          var c = newpos + 1 - strlen(mantissa);
+          var c = newpos + 1 - length;
           var zeroesString = '0';
           newMantissa = mantissa + zeroesString.repeat(c) + ".0";
         }
