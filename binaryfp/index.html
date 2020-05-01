@@ -356,7 +356,34 @@
         //
         // Check mantissa - convert from two's complement if necessary, then perform shift
         //
-        var strStep2a = "Mantissa: " + mantissa.toString() + "\t Converted: -0.1101"
+        var twosComplement = false;
+        var convertedMantissa = mantissa;
+
+        if ( convertedMantissa[0] == '1' ) {
+          twosComplement = true;
+          var flip1 = convertedMantissa.replace(/0/g, 'Q');
+          var flip2 = flip1.replace(/1/g, '0');
+          var flip3 = flip2.replace(/Q/g, '1');
+          convertedMantissa = flip3  
+        }
+
+        if (twosComplement) {
+          for (index = convertedMantissa.length; index >0; index--) {
+            if (convertedMantissa[index-1] == '0') {
+              convertedMantissa = convertedMantissa.slice(0, index-1) + '1' + convertedMantissa.slice(index);
+              break;
+            } else {
+              convertedMantissa = convertedMantissa.slice(0, index-1) + '0' + convertedMantissa.slice(index);
+            }
+          }
+          convertedMantissa = "-" + convertedMantissa;
+        }
+
+
+
+
+
+        var strStep2a = "Mantissa: " + mantissa + "\t Converted: " + convertedMantissa;
         
         // This gives us the new position of the radix point in the binary string
         // This is a bit obscure, but if the exponent is negative, we shift the number right, so the
