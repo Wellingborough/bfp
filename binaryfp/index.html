@@ -383,7 +383,10 @@
 
 
 
-        var strStep2a = "Mantissa: " + mantissa + "\t Converted: " + convertedMantissa;
+        var mBD = mantissa.slice(0,1) + "." + mantissa.slice(1);
+        var mCBD = convertedMantissa.slice(0,1) + "." + convertedMantissa.slice(1);
+
+        var strStep2a = "Mantissa: " + mBD + "\t Converted: " + mCBD;
         
         // This gives us the new position of the radix point in the binary string
         // This is a bit obscure, but if the exponent is negative, we shift the number right, so the
@@ -391,13 +394,13 @@
         // positive, we shift the number left, so the 'new' radix position will be off to the right.
         // In either case, we may need to pad with zeroes...
         var newpos = 1 + exponentDenary;
-        var shiftedMantissa = mantissa;
-        var length = mantissa.length;
+        var shiftedMantissa = convertedMantissa;
+        var length = convertedMantissa.length;
         
         //
         // We need to display the mantissa as a binary string, complete with radix point and sign
         //var mantissaBinary = convertUnsignedDenaryToBinary(Math.abs(mantissaDenary));
-        var mantissaBinaryDisplay = mantissa.slice(0,1) + "." + mantissa.slice(1);
+        var mantissaBinaryDisplay = convertedMantissa.slice(0,1) + "." + convertedMantissa.slice(1);
         if (mantissaDenary < 0){
           mantissaBinaryDisplay = "-" + mantissaBinaryDisplay;
         }
