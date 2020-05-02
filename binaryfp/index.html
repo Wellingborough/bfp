@@ -330,7 +330,7 @@
         if (exponentDenary < 0) {
           strStep2Summary = strStep2Summary + "right:";
         } else if (exponentDenary == 0 ){
-          strStep2Summary = "Do not shift the mantiisa as the exponent is 0:"
+          strStep2Summary = "Do not shift the mantissa as the exponent is 0:"
         }
         else {
           strStep2Summary = strStep2Summary + "left:";
@@ -406,7 +406,11 @@
         }
 
         var strStep2 = "Mantissa: " + mantissaDisplay + "      Shifted: " + mantissaShiftedDisplay;
-          
+        
+        if (exponentDenary == 0 ){
+          strStep2 = "Mantissa: " + mantissaDisplay
+        }  
+        
         //
         //  Show the denary result
         //
