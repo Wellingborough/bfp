@@ -366,10 +366,10 @@
 
         //  Add sign
         if (twosComplement) {
-          mCBD = "-" + convertedMantissa;
+          mBCD = "-" + convertedMantissa;
         }
         
-        var strStep2a = "Mantissa: " + mBD + "\t Converted: " + mCBD;
+        var strStep2a = "Mantissa: " + mBD + "\t Converted: " + mBCD;
         
         // This gives us the new position of the radix point in the binary string
         // This is a bit obscure, but if the exponent is negative, we shift the number right, so the
@@ -378,11 +378,13 @@
         // In either case, we may need to pad with zeroes...
         var newpos = 1 + exponentDenary;
         var shiftedMantissa = mantissa;
+        var originalMantissa = mantissa;
         var length = mantissa.length;
         
         if (twosComplement){
           shiftedMantissa = convertedMantissa;
-          length = convertedMantissa.length;
+          originalMantissa = convertedMantissa;
+          length = originalMantissa.length;
         }
         
         if (newpos < 0) {
@@ -391,15 +393,15 @@
           shiftedMantissa = "0." + zeroesString.repeat(c-1);
         }
         else if (newpos == 0) {
-          shiftedMantissa = "0." + mantissa;
+          shiftedMantissa = "0." + originalMantissa;
         }
         else if ( newpos < length-1) {
-          shiftedMantissa =  mantissa.slice(0, newpos) + "." + mantissa.slice(newpos);
+          shiftedMantissa =  originalMantissa.slice(0, newpos) + "." + originalMantissa.slice(newpos);
         }
         else {
           var c = newpos + 1 - length;
           var zeroesString = '0';
-          shiftedMantissa = mantissa + zeroesString.repeat(c-1) + ".0";
+          shiftedMantissa = originalMantissa + zeroesString.repeat(c-1) + ".0";
         }
         
         var strStep2 = "Mantissa: " + mBD + "      Shifted: " + shiftedMantissa;
