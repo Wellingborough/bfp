@@ -387,7 +387,7 @@
         if (newpos < 0) {
           var c = Math.abs(newpos);
           var zeroesString = '0';
-          shiftedMantissa = "0." + zeroesString.repeat(c-1) + mantissa;
+          shiftedMantissa = "0." + zeroesString.repeat(c) + mantissa;
         }
         else if (newpos == 0) {
           shiftedMantissa = "0." + mantissa;
