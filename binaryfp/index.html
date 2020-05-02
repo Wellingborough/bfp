@@ -246,7 +246,7 @@
       function convertFractionalBinaryToDenary(binaryString) {
         var twosComplement = false;
         
-        if ( binaryString[0] == '1' ) {
+        if ( binaryString.charAt(0) == '1' ) {
           twosComplement = true;
           var flip1 = binaryString.replace(/0/g, 'Q');
           var flip2 = flip1.replace(/1/g, '0');
@@ -342,7 +342,7 @@
         var twosComplement = false;
         var convertedMantissa = mantissa;
 
-        if ( convertedMantissa[0] == '1' ) {
+        if ( convertedMantissa.charAt(0) == '1' ) {
           twosComplement = true;
           var flip1 = convertedMantissa.replace(/0/g, 'Q');
           var flip2 = flip1.replace(/1/g, '0');
@@ -359,12 +359,7 @@
               convertedMantissa = convertedMantissa.slice(0, index-1) + '0' + convertedMantissa.slice(index);
             }
           }
-//          convertedMantissa = "-" + convertedMantissa;
         }
-
-
-
-
 
         var mBD = mantissa.slice(0,1) + "." + mantissa.slice(1);
         var mBCD = convertedMantissa.slice(0,1) + "." + convertedMantissa.slice(1);
@@ -382,9 +377,14 @@
         // positive, we shift the number left, so the 'new' radix position will be off to the right.
         // In either case, we may need to pad with zeroes...
         var newpos = 1 + exponentDenary;
-        var shiftedMantissa = convertedMantissa;
-        var length = convertedMantissa.length;
-                
+        var shiftedMantissa = mantissa;
+        var length = mantissa.length;
+        
+        if (twosComplement){
+          shiftedMantissa = convertedMantissa;
+          length = convertedMantissa.length;
+        }
+        
         if (newpos < 0) {
           var c = Math.abs(newpos);
           var zeroesString = '0';
@@ -401,9 +401,11 @@
           var zeroesString = '0';
           shiftedMantissa = mantissa + zeroesString.repeat(c-1) + ".0";
         }
-                 
-        var strStep2 = "Mantissa: " + mCBD + "      Shifted: " + shiftedMantissa;
-  
+        
+        var strStep2 = "Mantissa: " + mBD + "      Shifted: " + shiftedMantissa;
+        if (twosComplement){
+          strStep2 = "Mantissa: " + mBCD + "      Shifted: " + shiftedMantissa;
+        }
           
         //
         //  Show the denary result
