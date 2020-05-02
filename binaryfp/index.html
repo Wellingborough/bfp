@@ -208,23 +208,6 @@
       }
     </script>
 
-    <script>
-      function convertUnsignedDenaryToBinary(denaryValue) {
-        var binaryString = "";
-        while (denaryValue > 1) {
-          var z = denaryValue % 2;
-          binaryString = z.toString() + binaryString ;
-          denaryValue = Math.floor(denaryValue/2);
-        }
-
-        if (denaryValue == 0) {
-          binaryString = '0' + binaryString;
-        } else {
-          binaryString = '1' + binaryString;
-        }
-        return binaryString;
-      }
-    </script>
     
     <script>
       function convertBinaryToDenary(binaryString) {
@@ -376,7 +359,7 @@
               convertedMantissa = convertedMantissa.slice(0, index-1) + '0' + convertedMantissa.slice(index);
             }
           }
-          convertedMantissa = "-" + convertedMantissa;
+//          convertedMantissa = "-" + convertedMantissa;
         }
 
 
@@ -384,8 +367,13 @@
 
 
         var mBD = mantissa.slice(0,1) + "." + mantissa.slice(1);
-        var mCBD = convertedMantissa.slice(0,1) + "." + convertedMantissa.slice(1);
+        var mBCD = convertedMantissa.slice(0,1) + "." + convertedMantissa.slice(1);
 
+        //  Add sign
+        if (twosComplement) {
+          mCBD = "-" + convertedMantissa;
+        }
+        
         var strStep2a = "Mantissa: " + mBD + "\t Converted: " + mCBD;
         
         // This gives us the new position of the radix point in the binary string
@@ -396,15 +384,7 @@
         var newpos = 1 + exponentDenary;
         var shiftedMantissa = convertedMantissa;
         var length = convertedMantissa.length;
-        
-        //
-        // We need to display the mantissa as a binary string, complete with radix point and sign
-        //var mantissaBinary = convertUnsignedDenaryToBinary(Math.abs(mantissaDenary));
-        var mantissaBinaryDisplay = convertedMantissa.slice(0,1) + "." + convertedMantissa.slice(1);
-        if (mantissaDenary < 0){
-          mantissaBinaryDisplay = "-" + mantissaBinaryDisplay;
-        }
-        
+                
         if (newpos < 0) {
           var c = Math.abs(newpos);
           var zeroesString = '0';
@@ -422,7 +402,7 @@
           shiftedMantissa = mantissa + zeroesString.repeat(c-1) + ".0";
         }
                  
-        var strStep2 = "Mantissa: " + mantissaBinaryDisplay + "      Shifted: " + shiftedMantissa;
+        var strStep2 = "Mantissa: " + mCBD + "      Shifted: " + shiftedMantissa;
   
           
         //
