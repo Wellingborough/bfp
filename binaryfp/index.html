@@ -341,6 +341,7 @@
         //
         var twosComplement = false;
         var convertedMantissa = mantissa;
+        var originalMantissa = mantissa;
 
         if ( convertedMantissa.charAt(0) == '1' ) {
           twosComplement = true;
@@ -359,17 +360,20 @@
               convertedMantissa = convertedMantissa.slice(0, index-1) + '0' + convertedMantissa.slice(index);
             }
           }
+          // Replace mantissa with converted version
+          mantissa = convertedMantissa;
         }
 
-        var mBD = mantissa.slice(0,1) + "." + mantissa.slice(1);
-        var mBCD = convertedMantissa.slice(0,1) + "." + convertedMantissa.slice(1);
+        var mantissaDisplay = mantissa.slice(0,1) + "." + mantissa.slice(1);
+        var mantissaOriginalDisplay = originalMantissa.slice(0,1) + "." + originalMantissa.slice(1);
 
         //  Add sign
         if (twosComplement) {
-          mBCD = "-" + convertedMantissa;
+          mantissaDisplay = "-" + mantissaDisplay;
+          mantissaOriginalDisplay = "-" + mantissaOriginalDisplay;
         }
         
-        var strStep2a = "Mantissa: " + mBD + "\t Converted: " + mBCD;
+        var strStep2a = "Mantissa: " + mantissaOriginalDisplay + "\t Converted: " + mantissaDisplay;
         
         // This gives us the new position of the radix point in the binary string
         // This is a bit obscure, but if the exponent is negative, we shift the number right, so the
@@ -378,36 +382,31 @@
         // In either case, we may need to pad with zeroes...
         var newpos = 1 + exponentDenary;
         var shiftedMantissa = mantissa;
-        var originalMantissa = mantissa;
         var length = mantissa.length;
-        
-        if (twosComplement){
-          shiftedMantissa = convertedMantissa;
-          originalMantissa = convertedMantissa;
-          length = originalMantissa.length;
-        }
-        
+                
         if (newpos < 0) {
           var c = Math.abs(newpos);
           var zeroesString = '0';
-          shiftedMantissa = "0." + zeroesString.repeat(c-1);
+          shiftedMantissa = "0." + zeroesString.repeat(c-1) + mantissa;
         }
         else if (newpos == 0) {
-          shiftedMantissa = "0." + originalMantissa;
+          shiftedMantissa = "0." + mantissa;
         }
         else if ( newpos < length-1) {
-          shiftedMantissa =  originalMantissa.slice(0, newpos) + "." + originalMantissa.slice(newpos);
+          shiftedMantissa =  mantissa.slice(0, newpos) + "." + mantissa.slice(newpos);
         }
         else {
           var c = newpos + 1 - length;
           var zeroesString = '0';
-          shiftedMantissa = originalMantissa + zeroesString.repeat(c-1) + ".0";
+          shiftedMantissa = mantissa + zeroesString.repeat(c-1) + ".0";
         }
         
-        var strStep2 = "Mantissa: " + mBD + "      Shifted: " + shiftedMantissa;
+        var mantissaShiftedDisplay = shiftedMantissa; 
         if (twosComplement){
-          strStep2 = "Mantissa: " + mBCD + "      Shifted: " + shiftedMantissa;
+          mantissaShiftedDisplay = "-" + mantissaShiftedDisplay;
         }
+
+        var strStep2 = "Mantissa: " + mantissaDisplay + "      Shifted: " + mantissaShiftedDisplay;
           
         //
         //  Show the denary result
