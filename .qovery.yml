@@ -1,0 +1,11 @@
+---
+application:
+  name: "bfp"
+  project: "headstart-2021"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-bfp"
+  routes:
+  - application_name: "bfp"
+    paths:
+    - "/*"
