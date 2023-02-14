@@ -436,10 +436,11 @@
         var binary = denormalise(manBits, expBits);
         
         var strStep1 = "Denary: " + denary + "  Binary: " + binary;
+        var places = convertBinaryToDenary(expBits);
         
         var strStep2Summary = "Normalise the binary ";
-        var strStep2a = "Shifr n places to left: " + manBits;
-        var strStep2 = "Shift n places to right: " + manBits;
+        var strStep2a = "Shift " + places.toString() + " places to left: " + manBits;
+        var strStep2 = "Shift " + places.toString() + " places to right: " + manBits;
         var strStep3 = "BFP: " + manBits + " " + expBits;
         
         
