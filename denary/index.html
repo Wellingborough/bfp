@@ -445,10 +445,19 @@
         var strStep2Summary = "Normalise the binary ";
         var strStep2a = "Shift " + places.toString() + " places to left: " + manBits;
         var strStep2 = "Shift " + places.toString() + " places to right: " + manBits;
+        
+        if ( places < 0 ) {
+          places = places * -1;
+          strStep2a = "Shift " + places.toString() + " places to left: " + manBits;
+        }
+        else if ( places == 0 ) {
+          strStep2a = "Already normalised - no shift required";
+        }
+        else {
+          strStep2a = "Shift " + places.toString() + " places to right: " + manBits;
+        }
+        
         var strStep3 = "BFP: " + manBits + " " + expBits;
-        
-        
-        
 
         //
         // Set up the explanation text
@@ -462,8 +471,8 @@
         document.getElementById('exp-step-3-summary-content').innerHTML = strStep3;
 
         //
-        // We just progressively show the answer here - the text is set up in another
-        // bit of JS, called when the "Show Me!" button is clicked
+        // We just progressively show the answer here - called when the "Show Me!" button
+        // is clicked
         //
         var rs1 = document.getElementById('exp-step-1-title-content').style;
         var rs2 = document.getElementById('exp-step-2-title-content').style;
