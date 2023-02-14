@@ -343,7 +343,7 @@
         else {
           denormalised = originalMantissa.slice(0, exponentDenary);
           denormalised += ".";
-          denormalised += originalMantissa.slice(exponentDenary, len(originalMantissa)); 
+          denormalised += originalMantissa.slice(exponentDenary); 
         }
         
         return denormalised;
