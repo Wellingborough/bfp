@@ -327,8 +327,7 @@
         // Note that we cannot just convert parts[0], as this will mess up
         // the 2s complement conversion.  For example, 1000.1 = -7.5, but
         // 1000 = -8.
-        var whole = convertBinaryToDenary(binaryString);
-        whole = Math.floor(whole);
+        var whole = Math.floor(denaryValue);
         
         // Strip any trailing zeroes from fractional part
         while ( parts[1].slice(-1) == "0" ) {
