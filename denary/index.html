@@ -124,7 +124,7 @@
               <table style="width:100%">
                 <tr id="exp-step-1-title">
                   <td>1. </td>
-                  <td id="exp-step-1-title-content" style="display: none;">Convert the exponent to denary:</td>
+                  <td id="exp-step-1-title-content" style="display: none;">Convert the denary to binary:</td>
                 </tr>
                 <tr id="exp-step-1-summary">
                   <td>&nbsp;</td>
@@ -132,7 +132,7 @@
                 </tr>
                 <tr id="exp-step-2-title">
                   <td>2. </td>
-                  <td id="exp-step-2-title-content" style="display: none;">Shift the mantissa 5 places to the left:</td>
+                  <td id="exp-step-2-title-content" style="display: none;">Normalise the binary:</td>
                 </tr>
                 <tr id="exp-step-2-summary-2sc" style="display: none;">
                   <td>&nbsp;</td>
@@ -144,7 +144,7 @@
                 </tr>
                 <tr id="exp-step-3-title">
                   <td>3. </td>
-                  <td id="exp-step-3-title-content" style="display: none;">Convert the mantissa to denary:</td>
+                  <td id="exp-step-3-title-content" style="display: none;">Set the exponent:</td>
                 </tr>
                 <tr id="exp-step-3-summary">
                   <td>&nbsp</td>
@@ -364,12 +364,12 @@
 
         //alert("The exponent is " + expBits);
         
-        var strStep1 = "Convert the number to binary:\nDenary: " + denary + "  Binary: " + "TBD";
+        var strStep1 = "Denary: " + denary + "  Binary: " + "TBD";
         
         var strStep2Summary = "Normalise the binary ";
-        var strStep2a = "Negative exponent ";
-        var strStep2 = "Positive exponent ";
-        var strStep3 = "Do something:\nDenary: " + denary + "BFP: " + manBits + " " + expBits;
+        var strStep2a = "Shifr n places to left: " + manBits;
+        var strStep2 = "Shift n places to right: " + manBits;
+        var strStep3 = "BFP: " + manBits + " " + expBits;
         
         
         
