@@ -348,24 +348,103 @@
         // be rewritten to show: (1) conversion of denary to binary, (2) normalisation, 
         // and (3) setting of exponent value.
         //return;
-        alert("Here!");
+        //alert("Here!");
         //
         // Retrieve the floating point number, then check it against the user-provided answer
         //
         var denary = document.getElementById("Denary").innerHTML;
-        alert("The original denary is " + denary);
+        //alert("The original denary is " + denary);
         
         //
         // Retrieve the hidden answer
         //
         var manBits = document.getElementById("hidden-mantissa").value;
         var expBits = document.getElementById("hidden-exponent").value;
-        alert("The mantissa is " + manBits);
+        //alert("The mantissa is " + manBits);
 
-        alert("The exponent is " + expBits);
+        //alert("The exponent is " + expBits);
         
+        var strStep1 = "Denary: " + denary;
+        
+        var strStep2Summary = "strStep2Summary ";
+        var strStep2a = "strStep2a ";
+        var strStep2 = "strStep2 ";
+        var strStep3 = "strStep3 ";
+        
+        
+        
+
+        //
+        // Set up the explanation text
+        //
+        document.getElementById('exp-step-1-summary-content').innerHTML = strStep1;
+        document.getElementById('exp-step-2-title-content').innerHTML = strStep2Summary;
+        if (mantissaDenary < 0) {
+          document.getElementById('exp-step-2-summary-2sc-content').innerHTML = strStep2a;
+        }
+        document.getElementById('exp-step-2-summary-content').innerHTML = strStep2;
+        document.getElementById('exp-step-3-summary-content').innerHTML = strStep3;
+
+        //
+        // We just progressively show the answer here - the text is set up in another
+        // bit of JS, called when the "Show Me!" button is clicked
+        //
+        var rs1 = document.getElementById('exp-step-1-title-content').style;
+        var rs2 = document.getElementById('exp-step-2-title-content').style;
+        var rs3 = document.getElementById('exp-step-3-title-content').style;
+        //alert(rs1.display);
+        
+        if (rs1.display == 'none') {
+          rs1.display = 'table-row';
+          rs1 = document.getElementById('exp-step-1-summary-content').style;
+          rs1.display = 'table-row';
+        } else if (rs2.display == 'none') {
+          rs2.display = 'table-row';
+          rs2 = document.getElementById('exp-step-2-summary-content').style;
+          rs2.display = 'table-row';
+          if (mantissaDenary < 0) {
+            rs2 = document.getElementById('exp-step-2-summary-2sc-content').style;
+            rs2.display = 'table-row';
+            rs2 = document.getElementById('exp-step-2-summary-2sc').style;
+            rs2.display = 'table-row';
+          }
+        } else if (rs3.display == 'none') {
+          rs3.display = 'table-row';
+          rs3 = document.getElementById('exp-step-3-summary-content').style;
+          rs3.display = 'table-row';
+        }
       }
     </script>
+    
+    <script>
+      function clearExplanation() {
+        
+        var result_style = document.getElementById('exp-step-1-title-content').style;
+        result_style.display = 'none';
+        
+        result_style = document.getElementById('exp-step-1-summary-content').style;
+        result_style.display = 'none';
+        
+        result_style = document.getElementById('exp-step-2-title-content').style;
+        result_style.display = 'none';
+        
+        result_style = document.getElementById('exp-step-2-summary-content').style;
+        result_style.display = 'none';
+        result_style = document.getElementById('exp-step-2-summary-2sc-content').style;
+        result_style.display = 'none';
+        result_style = document.getElementById('exp-step-2-summary-2sc').style;
+        result_style.display = 'none';
+
+        result_style = document.getElementById('exp-step-3-title-content').style;
+        result_style.display = 'none';
+        
+        result_style = document.getElementById('exp-step-3-summary-content').style;
+        result_style.display = 'none';
+      }
+    </script>    
+    
+    
+    
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
