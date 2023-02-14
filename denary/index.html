@@ -364,12 +364,12 @@
 
         //alert("The exponent is " + expBits);
         
-        var strStep1 = "Denary: " + denary;
+        var strStep1 = "Convert the number to binary:\nDenary: " + denary + "  Binary: " + "TBD";
         
-        var strStep2Summary = "strStep2Summary ";
-        var strStep2a = "strStep2a ";
-        var strStep2 = "strStep2 ";
-        var strStep3 = "strStep3 ";
+        var strStep2Summary = "Normalise the binary ";
+        var strStep2a = "Negative exponent ";
+        var strStep2 = "Positive exponent ";
+        var strStep3 = "Do something:\nDenary: " + denary + "BFP: " + manBits + " " + expBits;
         
         
         
@@ -379,7 +379,7 @@
         //
         document.getElementById('exp-step-1-summary-content').innerHTML = strStep1;
         document.getElementById('exp-step-2-title-content').innerHTML = strStep2Summary;
-        if (mantissaDenary < 0) {
+        if (denary < 0) {
           document.getElementById('exp-step-2-summary-2sc-content').innerHTML = strStep2a;
         }
         document.getElementById('exp-step-2-summary-content').innerHTML = strStep2;
