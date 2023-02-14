@@ -336,9 +336,9 @@
           for (i = exponentDenary; i < 0; ++i) {
             denormalised += "0";
           }
-          denormalised += originalMantissa.slice(0,1)
-          denormalised += "."
-          denormalised += originalMantissa.slice(1)
+          denormalised += originalMantissa
+          var temp = denormalised.slice(0, 1) + "." + denormalised.slice(1);
+          denormalised = temp;
         }
         else {
           denormalised = originalMantissa.slice(0, exponentDenary);
@@ -474,7 +474,7 @@
           rs2.display = 'table-row';
           rs2 = document.getElementById('exp-step-2-summary-content').style;
           rs2.display = 'table-row';
-          if (mantissaDenary < 0) {
+          if (denary < 0) {
             rs2 = document.getElementById('exp-step-2-summary-2sc-content').style;
             rs2.display = 'table-row';
             rs2 = document.getElementById('exp-step-2-summary-2sc').style;
