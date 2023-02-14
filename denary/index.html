@@ -444,17 +444,20 @@
         
         var strStep2Summary = "Normalise the binary ";
         var strStep2a = "Shift " + places.toString() + " places to left: " + manBits;
-        var strStep2 = "Shift " + places.toString() + " places to right: " + manBits;
+        var strStep2 = "";
         
         if ( places < 0 ) {
           places = places * -1;
-          strStep2a = "Shift " + places.toString() + " places to left: " + manBits;
+          strStep2a = "Shift " + places.toString() + " places to left: ";
+          strStep2a += manBits.slice(0, 1) + "." + manBits.slice(1);
+
         }
         else if ( places == 0 ) {
           strStep2a = "Already normalised - no shift required";
         }
         else {
           strStep2a = "Shift " + places.toString() + " places to right: " + manBits;
+          strStep2a += manBits.slice(0, 1) + "." + manBits.slice(1);
         }
         
         var strStep3 = "BFP: " + manBits + " " + expBits;
