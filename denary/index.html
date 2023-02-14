@@ -116,6 +116,9 @@
         // for use as a question.  We stash the mantissa and exponent values in hidden HTML components for
         // ease of checking later.
         //
+        // Even with this approach, we are still generating some numbers which are too challenging for
+        // most A level students.  If the mantissa is randomly set at six bits, then we should limit the
+        // exponent perhaps - further investigation required.
         
         //
         // Randomise the mantissa size (4..6) and exponent size (3..3)
@@ -184,7 +187,7 @@
         document.getElementById("hidden-exponent").value = expBits;
         
         //Uncomment the next line to show the answer...
-        //alert(bfp);
+        alert(bfp);
       }
     </script>
 
@@ -287,8 +290,8 @@
         // I have copied an early version of the binary explainer here - this needs to
         // be rewritten to show: (1) conversion of denary to binary, (2) normalisation, 
         // and (3) setting of exponent value.
-        return;
-        //alert("Here!");
+        //return;
+        alert("Here!");
         //
         // Retrieve the floating point number, then check it against the user-provided answer
         //
