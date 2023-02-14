@@ -166,6 +166,79 @@
       
     </main><!-- /.container -->
     <script>
+      //
+      // Given bitstrings representing the mantissa and the exponent, we
+      // calculate the denormalised bitstring complete with radix point,
+      // and return this for use in the explanation
+      //
+      function denormalise(mantissaBinaryString, exponentBinaryString) {
+        var mantissaTwosComplement = false;
+        var exponentTwosComplement = false;
+        
+        // We may want to keep the original mantissa bitstring
+        var originalMantissa = mantissaBinaryString 
+        if ( mantissaBinaryString[0] == '1' ) {
+          mantissaTwosComplement = true;
+          var flip1 = mantissaBinaryString.replace(/0/g, 'Q');
+          var flip2 = flip1.replace(/1/g, '0');
+          var flip3 = flip2.replace(/Q/g, '1');
+          mantissaBinaryString = flip3  
+        }
+
+        // We may want to keep the original exponent bitstring
+        if ( exponentBinaryString[0] == '1' ) {
+          exponentTwosComplement = true;
+          var flip1 = exponentBinaryString.replace(/0/g, 'Q');
+          var flip2 = flip1.replace(/1/g, '0');
+          var flip3 = flip2.replace(/Q/g, '1');
+          exponentBinaryString = flip3  
+        }
+        
+        // Convert the exponent to denary, so we know how many shifts
+        var originalLength = exponentBinaryString.length;
+        var exponentDenary = 0;
+        var index = 1;
+        for (i = 0; i < originalLength; ++i) {
+          var len = exponentBinaryString.length;
+          thisbit = exponentBinaryString.slice(len-1, len);
+          if ( thisbit == "1") {
+            exponentDenary += index;
+          }
+          exponentBinaryString = exponentBinaryString.slice(0,len-1);
+          index = index * 2;
+        }
+        
+        var denormalised = "";
+
+        if ( exponentTwosComplement ) {
+          //  We need to add leading 0s or 1s before putting the radix point in
+          
+          exponentDenary = exponentDenary + 1;
+          exponentDenary = exponentDenary * -1;
+          
+          var leadingChar = "0";
+          if ( mantissaTwosComplement ) {
+            leadingChar = "1";
+          }
+          
+          for (i = exponentDenary; i < 0; ++i) {
+            denormalised += leadingChar;
+          }
+          denormalised += originalMantissa
+          var temp = denormalised.slice(0, 1) + "." + denormalised.slice(1);
+          denormalised = temp;
+        }
+        else {
+          denormalised = originalMantissa.slice(0, exponentDenary+1);
+          denormalised += ".";
+          denormalised += originalMantissa.slice(exponentDenary+1); 
+        }
+        
+        return denormalised;
+      }
+    </script>
+
+    <script>
       function generateDenary() {
         //
         // This may be counter-intuitive, but we need the Denary numbers to be 'suitable' for simple(ish)
@@ -245,6 +318,15 @@
         
         //Uncomment the next line to show the answer...
         //alert(bfp);
+        
+        //Uncomment the next lines to show the experimental fraction dispay
+        var fraction = ;
+        var binaryString = denormalise(manBits, expBits);
+        const parts = binaryString.split(".");
+        var whole = convertBinaryToDenary(parts[0]);
+        var numerator = convertBinaryToDenary(parts[1]);
+        var denominator = 2 ** parts[1].length;
+        alert(whole.toString + " " + numerator.toString() + "\u2044" + denominator.toString());
       }
     </script>
 
@@ -280,81 +362,7 @@
         return total;
       }
     </script>
-
-    <script>
-      //
-      // Given bitstrings representing the mantissa and the exponent, we
-      // calculate the denormalised bitstring complete with radix point,
-      // and return this for use in the explanation
-      //
-      function denormalise(mantissaBinaryString, exponentBinaryString) {
-        var mantissaTwosComplement = false;
-        var exponentTwosComplement = false;
         
-        // We may want to keep the original mantissa bitstring
-        var originalMantissa = mantissaBinaryString 
-        if ( mantissaBinaryString[0] == '1' ) {
-          mantissaTwosComplement = true;
-          var flip1 = mantissaBinaryString.replace(/0/g, 'Q');
-          var flip2 = flip1.replace(/1/g, '0');
-          var flip3 = flip2.replace(/Q/g, '1');
-          mantissaBinaryString = flip3  
-        }
-
-        // We may want to keep the original exponent bitstring
-        if ( exponentBinaryString[0] == '1' ) {
-          exponentTwosComplement = true;
-          var flip1 = exponentBinaryString.replace(/0/g, 'Q');
-          var flip2 = flip1.replace(/1/g, '0');
-          var flip3 = flip2.replace(/Q/g, '1');
-          exponentBinaryString = flip3  
-        }
-        
-        // Convert the exponent to denary, so we know how many shifts
-        var originalLength = exponentBinaryString.length;
-        var exponentDenary = 0;
-        var index = 1;
-        for (i = 0; i < originalLength; ++i) {
-          var len = exponentBinaryString.length;
-          thisbit = exponentBinaryString.slice(len-1, len);
-          if ( thisbit == "1") {
-            exponentDenary += index;
-          }
-          exponentBinaryString = exponentBinaryString.slice(0,len-1);
-          index = index * 2;
-        }
-        
-        var denormalised = "";
-
-        if ( exponentTwosComplement ) {
-          //  We need to add leading 0s or 1s before putting the radix point in
-          
-          exponentDenary = exponentDenary + 1;
-          exponentDenary = exponentDenary * -1;
-          
-          var leadingChar = "0";
-          if ( mantissaTwosComplement ) {
-            leadingChar = "1";
-          }
-          
-          for (i = exponentDenary; i < 0; ++i) {
-            denormalised += leadingChar;
-          }
-          denormalised += originalMantissa
-          var temp = denormalised.slice(0, 1) + "." + denormalised.slice(1);
-          denormalised = temp;
-        }
-        else {
-          denormalised = originalMantissa.slice(0, exponentDenary+1);
-          denormalised += ".";
-          denormalised += originalMantissa.slice(exponentDenary+1); 
-        }
-        
-        return denormalised;
-      }
-    </script>
-    
-    
     <script>
       function convertFractionalBinaryToDenary(binaryString) {
         var twosComplement = false;
@@ -460,7 +468,7 @@
           strStep2a += manBits.slice(0, 1) + "." + manBits.slice(1);
         }
         
-        var strStep3 = "BFP: " + manBits + " " + expBits;
+        var strStep3 = "Answer: " + manBits + " " + expBits;
 
         //
         // Set up the explanation text
