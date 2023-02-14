@@ -319,12 +319,18 @@
         //Uncomment the next line to show the answer...
         //alert(bfp);
         
-        //Uncomment the next lines to show the experimental fraction dispay
+        //Uncomment the next lines to show the experimental fraction display
         var binaryString = denormalise(manBits, expBits);
         const parts = binaryString.split(".");
-        var whole = convertBinaryToDenary(parts[0]);
-        // Force conversion to consider the numerator a positive number
-        // Strip any trailing zeroes
+        
+        // Convert entire number, then take the 'integer' part.
+        // Note that we cannot just convert parts[0], as this will mess up
+        // the 2s complement conversion.  For example, 1000.1 = -7.5, but
+        // 1000 = -8.
+        var whole = convertBinaryToDenary(binaryString);
+        whole = Math.floor(whole);
+        
+        // Strip any trailing zeroes from fractional part
         while ( parts[1].slice(-1) == "0" ) {
           parts[1] = parts[1].slice(0,-1);
         }
