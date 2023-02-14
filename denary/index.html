@@ -101,7 +101,9 @@
 
         <div class="btn-group" role="group" aria-label="Button group example">
           <button type="button" onclick="checkBinary()" class="btn btn-primary btn-lg">Check</button>
-          <button type="button" onclick="explainBinary()" class="btn btn-secondary btn-lg text-right">Show Me!</button>
+          <button type="button" class="btn btn-secondary btn-lg text-right" data-toggle="modal" data-target="#explanationModal">
+            Show Me!
+          </button>
           <input type="hidden" id="hidden-mantissa">
           <input type="hidden" id="hidden-exponent">
         </div>
@@ -156,7 +158,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" onclick="clearExplanation()" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" onclick="explainBFP()">Show next step</button>
+              <button type="button" class="btn btn-primary" onclick="explainBinary()">Show next step</button>
             </div>
           </div>
         </div>
