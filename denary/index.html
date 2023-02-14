@@ -107,6 +107,61 @@
         </div>
 
       </div>
+      
+      <!-- Explanation Modal -->
+      <div class="modal fade" id="explanationModal" tabindex="-1" role="dialog" aria-labelledby="explanationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="explanationModalLabel">Step-by-step</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <table style="width:100%">
+                <tr id="exp-step-1-title">
+                  <td>1. </td>
+                  <td id="exp-step-1-title-content" style="display: none;">Convert the exponent to denary:</td>
+                </tr>
+                <tr id="exp-step-1-summary">
+                  <td>&nbsp;</td>
+                  <td id="exp-step-1-summary-content" style="display: none;">Binary: 0101   Denary: 5</td>
+                </tr>
+                <tr id="exp-step-2-title">
+                  <td>2. </td>
+                  <td id="exp-step-2-title-content" style="display: none;">Shift the mantissa 5 places to the left:</td>
+                </tr>
+                <tr id="exp-step-2-summary-2sc" style="display: none;">
+                  <td>&nbsp;</td>
+                  <td id="exp-step-2-summary-2sc-content" style="display: none;">Mantissa: 1.1101   Converted: -0.0011</td>
+                </tr>
+                <tr id="exp-step-2-summary">
+                  <td>&nbsp;</td>
+                  <td id="exp-step-2-summary-content" style="display: none;">Mantissa: 0.1101   Shifted: 11010.0</td>
+                </tr>
+                <tr id="exp-step-3-title">
+                  <td>3. </td>
+                  <td id="exp-step-3-title-content" style="display: none;">Convert the mantissa to denary:</td>
+                </tr>
+                <tr id="exp-step-3-summary">
+                  <td>&nbsp</td>
+                  <td id="exp-step-3-summary-content" style="display: none;">Binary: -110.01   Denary: -6.25</td>
+                </tr>
+                <tr id="exp-step-4" style="display: none;">
+                  <td>Step 4</td>
+                  <td>This should not be shown</td>
+                </tr>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" onclick="clearExplanation()" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="explainBFP()">Show next step</button>
+            </div>
+          </div>
+        </div>
+      </div>      
+      
     </main><!-- /.container -->
     <script>
       function generateDenary() {
