@@ -444,7 +444,7 @@
         
         var strStep2Summary = "Normalise the binary ";
         var strStep2a = "Shift " + places.toString() + " places to left: " + manBits;
-        var strStep2 = "";
+        var strStep2 = "Exponent: " + places.toString();
         
         if ( places < 0 ) {
           places = places * -1;
@@ -488,12 +488,10 @@
           rs2.display = 'table-row';
           rs2 = document.getElementById('exp-step-2-summary-content').style;
           rs2.display = 'table-row';
-          if (denary < 0) {
-            rs2 = document.getElementById('exp-step-2-summary-2sc-content').style;
-            rs2.display = 'table-row';
-            rs2 = document.getElementById('exp-step-2-summary-2sc').style;
-            rs2.display = 'table-row';
-          }
+          rs2 = document.getElementById('exp-step-2-summary-2sc-content').style;
+          rs2.display = 'table-row';
+          rs2 = document.getElementById('exp-step-2-summary-2sc').style;
+          rs2.display = 'table-row';
         } else if (rs3.display == 'none') {
           rs3.display = 'table-row';
           rs3 = document.getElementById('exp-step-3-summary-content').style;
