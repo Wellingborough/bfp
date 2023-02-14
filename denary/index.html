@@ -244,7 +244,7 @@
         document.getElementById("hidden-exponent").value = expBits;
         
         //Uncomment the next line to show the answer...
-        alert(bfp);
+        //alert(bfp);
       }
     </script>
 
@@ -328,22 +328,26 @@
 
         if ( exponentTwosComplement ) {
           //  We need to add leading 0s or 1s before putting the radix point in
-          // Only partially implemented for testing - if mantissa is negative
-          // we need leading ones.
+          
           exponentDenary = exponentDenary + 1;
           exponentDenary = exponentDenary * -1;
           
+          var leadingChar = "0";
+          if ( mantissaTwosComplement ) {
+            leadingChar = "1";
+          }
+          
           for (i = exponentDenary; i < 0; ++i) {
-            denormalised += "0";
+            denormalised += leadingChar;
           }
           denormalised += originalMantissa
           var temp = denormalised.slice(0, 1) + "." + denormalised.slice(1);
           denormalised = temp;
         }
         else {
-          denormalised = originalMantissa.slice(0, exponentDenary);
+          denormalised = originalMantissa.slice(0, exponentDenary+1);
           denormalised += ".";
-          denormalised += originalMantissa.slice(exponentDenary); 
+          denormalised += originalMantissa.slice(exponentDenary+1); 
         }
         
         return denormalised;
