@@ -323,8 +323,13 @@
         var binaryString = denormalise(manBits, expBits);
         const parts = binaryString.split(".");
         var whole = convertBinaryToDenary(parts[0]);
-        var numerator = convertBinaryToDenary(parts[1]);
-        var denominator = 2 ** parts[1].length;
+        // Force conversion to consider the numerator a positive number
+        // Strip any trailing zeroes
+        while ( parts[1].slice(-1) == "0" ) {
+          parts[1] = parts[1].slice(0,-1);
+        }
+        var numerator = convertBinaryToDenary("0"+parts[1]);
+        var denominator = 2 ** (parts[1].length-1);
         if ( numerator == 0 ) {
           alert(whole.toString());
         } else {
