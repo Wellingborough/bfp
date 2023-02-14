@@ -325,7 +325,11 @@
         var whole = convertBinaryToDenary(parts[0]);
         var numerator = convertBinaryToDenary(parts[1]);
         var denominator = 2 ** parts[1].length;
-        alert(whole.toString + " " + numerator.toString() + "\u2044" + denominator.toString());
+        if ( numerator == 0 ) {
+          alert(whole.toString());
+        else {
+          alert(whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString());
+        }
       }
     </script>
 
