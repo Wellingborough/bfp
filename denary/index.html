@@ -116,7 +116,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="explanationModalLabel">Step-by-step</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" onclick="clearExplanation()" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -340,7 +340,11 @@
           alert(whole.toString());
         } else {
           numerator = Math.abs(numerator);
-          alert(whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString());
+          if ( manBits.slice(0,1) == "1" and whole == 0) {
+            alert("-" + whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString());
+          } else {
+            alert(whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString());
+          }
         }
       }
     </script>
