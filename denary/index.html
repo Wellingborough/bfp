@@ -320,16 +320,22 @@
         //alert(bfp);
         
         //Uncomment the next lines to show the experimental fraction display
+        console.log("manBits: " + manBits);
+        console.log("expBits: " + expBits);
         var binaryString = denormalise(manBits, expBits);
+        console.log("binaryString: " + binaryString);
         const parts = binaryString.split(".");
+        console.log("parts: " + parts[0] + ", " + parts[1]);
         
         // Convert entire number, then take the 'integer' part.
         // Note that we cannot just convert parts[0], as this will mess up
         // the 2s complement conversion.  For example, 1000.1 = -7.5, but
         // 1000 = -8.
         var whole = Math.trunc(denaryValue);
+        console.log("whole: " + whole);
         
         // Deal with two's complement
+        console.log("denaryValue: " + denaryValue);
         var numerator = 0
         if ( denaryValue < 0 ) {
           twosComplement = true;
@@ -339,15 +345,19 @@
           var flip2 = flip1.replace(/1/g, '0');
           var flip3 = flip2.replace(/Q/g, '1');
           parts[1] = flip3  
+          console.log("parts: " + parts[0] + ", " + parts[1]);
         } 
         
         // Strip any trailing zeroes from fractional part
         while ( parts[1].slice(-1) == "0" ) {
           parts[1] = parts[1].slice(0,-1);
         }
+        console.log("parts: " + parts[0] + ", " + parts[1]);
         numerator = convertBinaryToDenary("0"+parts[1]);
+        console.log("numerator: " + numerator);
 
         var denominator = 2 ** (parts[1].length);
+        console.log("denominator: " + denominator);
         if ( numerator == 0 ) {
           alert(whole.toString());
         } else {
