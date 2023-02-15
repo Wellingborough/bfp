@@ -338,12 +338,12 @@
           var flip3 = flip2.replace(/Q/g, '1');
           parts[1] = flip3  
         } 
-        convertBinaryToDenary("0"+parts[1]);
         
         // Strip any trailing zeroes from fractional part
         while ( parts[1].slice(-1) == "0" ) {
           parts[1] = parts[1].slice(0,-1);
         }
+        numerator = convertBinaryToDenary("0"+parts[1]);
 
         var denominator = 2 ** (parts[1].length);
         if ( numerator == 0 ) {
