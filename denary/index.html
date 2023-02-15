@@ -347,10 +347,10 @@
           console.log("parts: " + parts[0] + ", " + parts[1]);
         } 
         
-        // DON'T Strip any trailing zeroes from fractional part
-        //while ( parts[1].slice(-1) == "0" ) {
-        //  parts[1] = parts[1].slice(0,-1);
-        //}
+        // Strip any trailing zeroes from fractional part
+        while ( parts[1].slice(-1) == "0" ) {
+          parts[1] = parts[1].slice(0,-1);
+        }
         console.log("parts: " + parts[0] + ", " + parts[1]);
         numerator = convertBinaryToDenary("0"+parts[1]);
         if ( denaryValue < 0 ) {
