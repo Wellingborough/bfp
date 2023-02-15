@@ -333,6 +333,8 @@
         var numerator = 0
         if ( denaryValue < 0 ) {
           twosComplement = true;
+          // ensure that we have at least one trailing zero
+          parts[1] = parts[1] + "0"
           var flip1 = parts[1].replace(/0/g, 'Q');
           var flip2 = flip1.replace(/1/g, '0');
           var flip3 = flip2.replace(/Q/g, '1');
