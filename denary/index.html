@@ -356,6 +356,8 @@
           //
           // Convert to denary to add one...
           //
+          var originalLength = OnesC.length
+          
           var OnesC = convertBinaryToDenary("0"+parts[1])
           OnesC += 1;
           console.log("converted: " + OnesC.toString());
@@ -363,6 +365,11 @@
           // Convert back to binary
           //
           parts[1] = OnesC.toString(2);
+          
+          // Pad to original length
+          while ( parts[1].length < originalLength ) {
+            parts[1] = "0" + parts[1] ;
+          }
           console.log("back to binary: " + parts[1]);
         } 
         
@@ -372,9 +379,6 @@
         }
         console.log("parts: " + parts[0] + ", " + parts[1]);
         numerator = convertBinaryToDenary("0"+parts[1]);
-        if ( denaryValue < 0 ) {
-          numerator += 1;
-        }
         console.log("numerator: " + numerator);
 
         var denominator = 2 ** (parts[1].length);
