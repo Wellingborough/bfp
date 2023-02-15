@@ -330,6 +330,12 @@
         const parts = binaryString.split(".");
         console.log("parts: " + parts[0] + ", " + parts[1]);
         
+        var noFractionalPart = false;
+        if ( parts[1] == "" || parts[1] == "0" ) {
+          noFractionalPart = true;
+          console.log("No fractional part");
+        }
+        
         // 
         // Convert entire number, then take the 'integer' part.
         // Note that we cannot just convert parts[0], as this will mess up
@@ -388,9 +394,17 @@
         } else {
           numerator = Math.abs(numerator);
           if ( manBits.slice(0,1) == "1" && whole == 0) {
-            alert("-" + whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString());
+            if ( noFractionalPart ) {
+              alert("-" + whole.toString());
+            } else {
+              alert("-" + whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString());
+            }
           } else {
-            alert(whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString());
+            if ( noFractionalPart ) {
+              alert(whole.toString());
+            } else {
+              alert(whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString());
+            }
           }
         }
       }
