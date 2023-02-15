@@ -319,7 +319,10 @@
         //Uncomment the next line to show the answer...
         //alert(bfp);
         
-        //Uncomment the next lines to show the experimental fraction display
+        //
+        // Convert the number to a vulgar fraction for display
+        // This has turned out to be non-trivial...
+        //
         console.log("manBits: " + manBits);
         console.log("expBits: " + expBits);
         var binaryString = denormalise(manBits, expBits);
@@ -327,10 +330,12 @@
         const parts = binaryString.split(".");
         console.log("parts: " + parts[0] + ", " + parts[1]);
         
+        // 
         // Convert entire number, then take the 'integer' part.
         // Note that we cannot just convert parts[0], as this will mess up
         // the 2s complement conversion.  For example, 1000.1 = -7.5, but
         // 1000 = -8.
+        //
         var whole = Math.trunc(denaryValue);
         console.log("whole: " + whole);
         
@@ -339,12 +344,22 @@
         var numerator = 0
         if ( denaryValue < 0 ) {
           twosComplement = true;
-          // ensure that we have at least one trailing zero
+          // 
+          // Invert
+          //
           var flip1 = parts[1].replace(/0/g, 'Q');
           var flip2 = flip1.replace(/1/g, '0');
           var flip3 = flip2.replace(/Q/g, '1');
           parts[1] = flip3 ;
-          console.log("parts: " + parts[0] + ", " + parts[1]);
+          //
+          // Convert to denary to add one...
+          //
+          var OnesC = convertBinaryToDenary("0"+parts[1])
+          OnesC += 1;
+          //
+          // Convert back to binary
+          //
+          parts[1] = OnesC.toString(2);
         } 
         
         // Strip any trailing zeroes from fractional part
