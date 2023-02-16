@@ -383,15 +383,21 @@
           numerator = Math.abs(numerator);
           if ( manBits.slice(0,1) == "1" && whole == 0) {
             if ( noFractionalPart ) {
-              vulgar = "-" + whole.toString();
+              //vulgar = "-" + whole.toString();
+              vulgar = "-";
             } else {
-              vulgar = "-" + whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString();
+              //vulgar = "-" + whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString();
+              vulgar = "-" + " " + numerator.toString() + "\u2044" + denominator.toString();
             }
           } else {
             if ( noFractionalPart ) {
               vulgar = whole.toString();
             } else {
-              vulgar = whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString();
+              if ( whole == 0 ) {
+                vulgar = numerator.toString() + "\u2044" + denominator.toString();
+              } else {
+                vulgar = whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString();
+              }
             }
           }
         }
