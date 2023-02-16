@@ -304,12 +304,7 @@
         manValue = convertFractionalBinaryToDenary(manBits);
         
         denaryValue = manValue * (2 ** expValue);
-        
-        //
-        // Display the denary value to be converted
-        //
-        document.getElementById("Denary").innerHTML = denaryValue.toString();
-        
+                
         //
         // Stash the mantissa and exponent values
         //
@@ -323,19 +318,14 @@
         // Convert the number to a vulgar fraction for display
         // This has turned out to be non-trivial...
         //
-        console.log("manBits: " + manBits);
-        console.log("expBits: " + expBits);
         var binaryString = denormalise(manBits, expBits);
-        console.log("binaryString: " + binaryString);
         const parts = binaryString.split(".");
-        console.log("parts: " + parts[0] + ", " + parts[1]);
         
         var noFractionalPart = false;
         var denaryExp = convertBinaryToDenary(parts[1]);
         
         if ( parts[1] == "" || denaryExp == 0 ) {
           noFractionalPart = true;
-          console.log("No fractional part");
         }
         
         // 
@@ -345,22 +335,19 @@
         // 1000 = -8.
         //
         var whole = Math.trunc(denaryValue);
-        console.log("whole: " + whole);
         
         // Deal with two's complement
-        console.log("denaryValue: " + denaryValue);
         var numerator = 0
         if ( denaryValue < 0 ) {
           twosComplement = true;
           // 
           // Invert
           //
-          console.log("parts[1]: " + parts[1]);
           var flip1 = parts[1].replace(/0/g, 'Q');
           var flip2 = flip1.replace(/1/g, '0');
           var flip3 = flip2.replace(/Q/g, '1');
           parts[1] = flip3 ;
-          console.log("inverted: " + parts[1]);
+        
           //
           // Convert to denary to add one...
           //
@@ -368,7 +355,7 @@
           
           var OnesC = convertBinaryToDenary("0"+parts[1])
           OnesC += 1;
-          console.log("converted: " + OnesC.toString());
+          
           //
           // Convert back to binary
           //
@@ -378,37 +365,45 @@
           while ( parts[1].length < originalLength ) {
             parts[1] = "0" + parts[1] ;
           }
-          console.log("back to binary: " + parts[1]);
         } 
         
         // Strip any trailing zeroes from fractional part
         while ( parts[1].slice(-1) == "0" ) {
           parts[1] = parts[1].slice(0,-1);
         }
-        console.log("parts: " + parts[0] + ", " + parts[1]);
         numerator = convertBinaryToDenary("0"+parts[1]);
-        console.log("numerator: " + numerator);
-
+        
         var denominator = 2 ** (parts[1].length);
-        console.log("denominator: " + denominator);
+        
+        var vulgar = "";
+        
         if ( numerator == 0 ) {
-          alert(whole.toString());
+          vulgar = whole.toString();
         } else {
           numerator = Math.abs(numerator);
           if ( manBits.slice(0,1) == "1" && whole == 0) {
             if ( noFractionalPart ) {
-              alert("-" + whole.toString());
+              vulgar = "-" + whole.toString();
             } else {
-              alert("-" + whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString());
+              vulgar = "-" + whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString();
             }
           } else {
             if ( noFractionalPart ) {
-              alert(whole.toString());
+              vulgar = whole.toString();
             } else {
-              alert(whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString());
+              vulgar = whole.toString() + " " + numerator.toString() + "\u2044" + denominator.toString();
             }
           }
         }
+        
+        //
+        // Display the denary value to be converted
+        // (Replaced by vulgar fraction, but code left here as we will want
+        // a setting or UI to switch between the two
+        //
+        //document.getElementById("Denary").innerHTML = denaryValue.toString();
+        document.getElementById("Denary").innerHTML = vulgar;
+
       }
     </script>
 
