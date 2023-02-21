@@ -96,7 +96,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon3">Answer in base 10</span>
           </div>
-          <input type="number" class="form-control" id="denary-answer" aria-describedby="basic-addon3">
+          <input type="text" onKeyDown="checkChars()" class="form-control" id="denary-answer" aria-describedby="basic-addon3">
         </div>
 
         <div class="btn-group" role="group" aria-label="Button group example">
@@ -166,6 +166,40 @@
       
     </main><!-- /.container -->
     <script>
+
+      //
+      // Allow numbers, negative sign, '/' for common fractions and '.' for decimal
+      //
+      function checkChars() {
+        var e = event || window.event;  // get event object
+        var key = e.keyCode || e.which; // get key cross-browser
+ 
+        var charAllowed = false;
+        
+        if ( key < 48 || key > 57 ) {
+          // 
+          // Not a number, so check for the three other allowed chars
+          // Do not subsume these into the range above in case we need
+          // to further specialise this.  The range of numbers should be
+          // just that...
+          //
+          if ( key == 45 || key == 46 || key == 47 ) {
+            charAllowed = true;
+          }
+        } else {
+          charAllowed = true;
+        }
+        
+        if ( charAllowed ) {
+          //Prevent default action, which is inserting character
+          if (e.preventDefault)
+            e.preventDefault(); // Everything other than (older versions of?) Internet Explorer
+          e.returnValue = false; // Internet Explorer
+        }
+      }        
+
+      
+      
       function generateBFP() {
         //
         // Get the size of the mantissa and exponent, and then generate random bits
