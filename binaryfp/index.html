@@ -181,10 +181,10 @@
           // Not a number, so check for the three other allowed chars
           // Do not subsume these into the range above in case we need
           // to further specialise this.  The range of numbers should be
-          // just that...'-' (45), '.' (46), '/' (47) and ' ' (32)
-          // Allow 
+          // just that...
+          // Allow '-' (45), '.' (46), '/' (47) and ' ' (32) and backspace (8)
           //
-          if ( e.key == "-" || e.key == "." || e.key == "/" || e.key == " ") {
+          if ( e.key == "-" || e.key == "." || e.key == "/" || e.key == " " || key == 8) {
             charAllowed = true;
           }
         } else {
