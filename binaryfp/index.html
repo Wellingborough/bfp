@@ -338,10 +338,28 @@
         let isCommonFraction = userAnswer.includes("/");
         
         if ( isCommonFraction ) {
-          //let isNegative = false;
-          //if ( userAnswer[0] == '-' ) {
-          //  isNegative = true;
-          //}
+          let wholePart = 0;
+          
+          //
+          // Check to see if the user's answer is a negative number
+          //
+          let isNegative = false;
+          if ( userAnswer[0] == '-' ) {
+            isNegative = true;
+          }
+          
+          //
+          // Check whether we have a whole part as well as a fraction
+          //
+          let hasWholePart = userAnswer.includes(" ");
+          if ( hasWholePart ) {
+            const processedArray = userAnswer.split(" ");
+            wholePart = parseInt(processedArray[0]);
+            
+            // Now replace the original answer with the fractional part only
+            userAnswer = processedArray[1];
+          }
+          
           const processedArray = userAnswer.split("/");
           //alert(processedArray);
           
@@ -349,9 +367,15 @@
           let denominator = parseInt(processedArray[1]);
           
           let decimalAnswer = numerator / denominator ;
-          //if ( isNegative ) {
-          //  decimalAnswer = decimalAnswer * -1;
-          //}
+          
+          if ( hasWholePart ) {
+            if ( isNegative ) {
+              decimalAnswer = wholePart - decimalAnswer;
+            }
+            else {
+              decimalAnswer = wholePart + decimalAnswer;
+            }
+          }
           
           userAnswer = decimalAnswer.toString();
           //alert(userAnswer);
