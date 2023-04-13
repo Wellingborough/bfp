@@ -343,10 +343,10 @@
           //  isNegative = true;
           //}
           const processedArray = userAnswer.split("/");
-          alert(processedArray);
+          //alert(processedArray);
           
-          let numerator = parseInt(userAnswer[0]);
-          let denominator = parseInt(userAnswer[1]);
+          let numerator = parseInt(processedArray[0]);
+          let denominator = parseInt(processedArray[1]);
           
           let decimalAnswer = numerator / denominator ;
           //if ( isNegative ) {
@@ -354,7 +354,7 @@
           //}
           
           userAnswer = decimalAnswer.toString();
-          alert(userAnswer);
+          //alert(userAnswer);
         }
         
         if ( userAnswer == denaryResult ) {
