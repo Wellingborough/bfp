@@ -332,6 +332,31 @@
         var denaryResult = mantissaDenary * ( 2 ** exponentDenary );
         var userAnswer = document.getElementById("denary-answer").value;
         
+        //
+        // If the answer is given as a common fraction, we need to preprocess it...
+        //
+        let isCommonFraction = userAnswer.includes("/");
+        
+        if ( isCommonFraction ) {
+          //let isNegative = false;
+          //if ( userAnswer[0] == '-' ) {
+          //  isNegative = true;
+          //}
+          const processedArray = userAnswer.split("/");
+          alert(processedArray);
+          
+          let numerator = parseInt(userAnswer[0]);
+          let denominator = parseInt(userAnswer[1]);
+          
+          let decimalAnswer = numerator / denominator ;
+          //if ( isNegative ) {
+          //  decimalAnswer = decimalAnswer * -1;
+          //}
+          
+          userAnswer = decimalAnswer.toString();
+          alert(userAnswer);
+        }
+        
         if ( userAnswer == denaryResult ) {
            alert("You got that one right!  Well done. ");
         } else {
